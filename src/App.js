@@ -10,8 +10,8 @@ const App = () => {
          try {
         const respuesta = await fetch("http://localhost:8081/usuarios", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
+            headers: {    
+                "Content-Type": "application/json"    
             },
             body: JSON.stringify({ nombre })
         });
@@ -51,19 +51,22 @@ const App = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Registro de Usuarios</h1>
-            <input type="text" placeholder="Nombre" onChange={(e) => setNombre(e.target.value)} />
-            <button onClick={guardarUsuario}>Guardar</button>
-            
-            <h2>Usuarios guardados:</h2>
-            <ul>
-                {usuarios.map((user, index) => (
-                    <li key={index}>{user.nombre}</li>
-                ))}
-            </ul>
-        </div>
+       <AuthProvider>  {/* Envolviendo toda la app con AuthProvider */}
+            <div>
+                <h1>Registro de Usuarios</h1>
+                <input type="text" placeholder="Nombre" onChange={(e) => setNombre(e.target.value)} />
+                <button onClick={guardarUsuario}>Guardar</button>
+                
+                <h2>Usuarios guardados:</h2>
+                <ul>
+                    {usuarios.map((user, index) => (
+                        <li key={index}>{user.nombre}</li>
+                    ))}
+                </ul>
+            </div>
+        </AuthProvider>
     );
 };
+
 
 export default App;
