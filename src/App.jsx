@@ -18,7 +18,7 @@ function App() {
   if (!usuario) return;
 
   try {
-    const response = await fetch(`https://backend-one-psi-28.vercel.app/mensajes/${usuario.uid}`);
+    const response = await fetch(`https://washwheels.vercel.app/mensajes/${usuario.uid}`);
     const data = await response.json();
     console.log("Mensajes filtrados del usuario:", data);
     setDatos(Array.isArray(data) ? data : []);
@@ -26,11 +26,59 @@ function App() {
     console.error("Error obteniendo mensajes:", error);
     setDatos([]);
   }
+
+  async function printIdToken() {
+  const user = auth.currentUser;
+  if (!user) {
+    console.error("No hay usuario logueado");
+    return;
+  }
+  // Esto es tu ID token: un string largo tipo “eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9…”
+  const idToken = await user.getIdToken();
+  console.log("Mi ID token:", idToken);
 }
+}
+
+async function fetchProfile() {
+  const user = auth.currentUser;
+  if (!user) throw new Error("No estás logueado");
+  const token = await user.getIdToken();
+  const res = await fetch("https://washwheels.vercel.app/profile", {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  const profile = await res.json();
+console.log(profile); // { uid: "abc123", email: "x@x.com", role: "admin" }
+  const data = await res.json();
+  console.log("Mi perfil:", data);
+}
+
+async function printIdToken() {
+  const user = auth.currentUser;
+  if (!user) {
+    console.error("No hay usuario logueado");
+    return;
+  }
+  // Esto es tu ID token: un string largo tipo “eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9…”
+  const idToken = await user.getIdToken();
+  console.log("Mi ID token:", idToken);
+}
+
 
   
 useEffect(() => {
   console.log("Ejecutando solicitud al backend...");
+
+  auth.currentUser?.getIdToken().then(token => {
+    fetch("https://washwheels.vercel.app/profile", {
+      headers: { 
+        "Authorization": `Bearer ${token}` 
+      }
+    })
+    .then(res => res.json())
+    .then(data => console.log("Mi perfil:", data))
+    .catch(console.error);
+  });
+console.log("✔️ Token verificado:", decoded.uid, decoded.role); 
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -52,7 +100,7 @@ useEffect(() => {
   }
 
   try {
-    const response = await fetch("https://backend-one-psi-28.vercel.app/api/test", {
+    const response = await fetch("https://washwheels.vercel.app/api/test", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ mensaje, uid: usuario.uid }) // ✅ Enviar el UID correctamente
