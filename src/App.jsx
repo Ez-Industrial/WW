@@ -51,24 +51,39 @@ console.log(profile); // { uid: "abc123", email: "x@x.com", role: "admin" }
   const data = await res.json();
   console.log("Mi perfil:", data);
 }
-
-async function printIdToken() {
-  const user = auth.currentUser;
-  if (!user) {
-    console.error("No hay usuario logueado");
-    return;
-  }
-  // Esto es tu ID token: un string largo tipo “eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9…”
-  const idToken = await user.getIdToken();
-  console.log("Mi ID token:", idToken);
-}
-
-
   
 useEffect(() => {
   console.log("Ejecutando solicitud al backend...");
+  
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    setUsuario(user);
+    console.log("Usuario autenticado tras recarga:", user.email);
 
-  auth.currentUser?.getIdToken().then(token => {
+    // Creamos una función async dentro del callback
+    (async () => {
+      try {
+        const token = await user.getIdToken();
+        console.log("🔑 ID Token obtenido:", token);
+
+        // Llamamos a /profile con Authorization
+        const res = await fetch("https://washwheels.vercel.app/profile", {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        const profile = await res.json();
+        console.log("Perfil cargado:", profile);
+
+        obtenerMensajes(); // Cargar mensajes del usuario al recargar la página
+      } catch (error) {
+        console.error("⚠️ Error al obtener el perfil:", error);
+      }
+    })(); // Se ejecuta inmediatamente
+  } else {
+    setUsuario(null);
+  }
+});
+
+auth.currentUser?.getIdToken().then(token => {
     fetch("https://washwheels.vercel.app/profile", {
       headers: { 
         "Authorization": `Bearer ${token}` 
@@ -78,18 +93,7 @@ useEffect(() => {
     .then(data => console.log("Mi perfil:", data))
     .catch(console.error);
   });
-console.log("✔️ Token verificado:", decoded.uid, decoded.role); 
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setUsuario(user);
-      console.log("Usuario autenticado tras recarga:", user.email);
-      obtenerMensajes(); // Cargar mensajes del usuario al recargar la página
-    } else {
-      setUsuario(null);
-    }
-  });
-
+  
   obtenerMensajes();
   }, []);
  
