@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { db, collection, addDoc, getDocs } from "./firebase";
 import App from "../src/App";
 
 const App = () => {
@@ -8,7 +7,7 @@ const App = () => {
     
     const guardarUsuario = async () => {
          try {
-        const respuesta = await fetch("https://backend-one-psi-28.vercel.app/usuarios", {
+        const respuesta = await fetch("https://washwheels.vercel.app/usuarios", {
             method: "POST",
             headers: {    
                 "Content-Type": "application/json"    
@@ -33,7 +32,7 @@ const App = () => {
 
     const obtenerUsuarios = async () => {
     try {
-        const respuesta = await fetch("https://backend-one-psi-28.vercel.app/usuarios");
+        const respuesta = await fetch("https://washwheels.vercel.app/usuarios");
         const data = await respuesta.json();
 
         if (respuesta.ok) {
