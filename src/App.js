@@ -8,7 +8,7 @@ const App = () => {
     
     const guardarUsuario = async () => {
          try {
-        const respuesta = await fetch("http://localhost:8081/usuarios", {
+        const respuesta = await fetch("https://backend-one-psi-28.vercel.app/usuarios", {
             method: "POST",
             headers: {    
                 "Content-Type": "application/json"    
@@ -33,7 +33,7 @@ const App = () => {
 
     const obtenerUsuarios = async () => {
     try {
-        const respuesta = await fetch("http://localhost:8081/usuarios");
+        const respuesta = await fetch("https://backend-one-psi-28.vercel.app/usuarios");
         const data = await respuesta.json();
 
         if (respuesta.ok) {

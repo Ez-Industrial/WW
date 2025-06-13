@@ -18,7 +18,7 @@ function App() {
   if (!usuario) return;
 
   try {
-    const response = await fetch(`http://localhost:8081/mensajes/${usuario.uid}`);
+    const response = await fetch(`https://backend-one-psi-28.vercel.app/mensajes/${usuario.uid}`);
     const data = await response.json();
     console.log("Mensajes filtrados del usuario:", data);
     setDatos(Array.isArray(data) ? data : []);
@@ -52,7 +52,7 @@ useEffect(() => {
   }
 
   try {
-    const response = await fetch("http://localhost:8081/api/test", {
+    const response = await fetch("https://backend-one-psi-28.vercel.app/api/test", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ mensaje, uid: usuario.uid }) // ✅ Enviar el UID correctamente
