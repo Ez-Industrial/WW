@@ -34,44 +34,32 @@ async function obtenerIdToken() {
   }
   const token = await auth.currentUser.getIdToken();
   console.log("🔑 ID Token obtenido:", token);
-
-
-
-  // Esto es tu ID token: un string largo tipo “eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9…”
-  const idToken = await user.getIdToken();
-  console.log("Mi ID token:", idToken);
 }
 }
 
 async function fetchProfile() {
   const user = auth.currentUser;
   if (!user) throw new Error("No estás logueado");
+
   const token = await user.getIdToken();
   const res = await fetch("https://washwheels.vercel.app/profile", {
     headers: { Authorization: `Bearer ${token}` }
   });
-  const profile = await res.json();
-console.log(profile); // { uid: "abc123", email: "x@x.com", role: "admin" }
   const data = await res.json();
   console.log("Mi perfil:", data);
 }
   
 useEffect(() => {
-  console.log("Ejecutando solicitud al backend...");
-  
 onAuthStateChanged(auth, (user) => {
   if (user) {
     setUsuario(user);
     console.log("Usuario autenticado tras recarga:", user.email);
-   obtenerIdToken(); 
 
-    // Creamos una función async dentro del callback
     (async () => {
       try {
         const token = await user.getIdToken();
         console.log("🔑 ID Token obtenido:", token);
 
-        // Llamamos a /profile con Authorization
         const res = await fetch("https://washwheels.vercel.app/profile", {
           headers: { Authorization: `Bearer ${token}` }
         });
