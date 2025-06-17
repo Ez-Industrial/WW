@@ -1,3 +1,4 @@
+import { registrarUsuario, loginCorreo, logout } from "./firebaseService";
 function Inicio (){
       <Router>
       <Routes>

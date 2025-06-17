@@ -2,9 +2,8 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './home';
-import { registrarUsuario, loginCorreo, logout } from "./firebaseService";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
+import { Link } from "react-router-dom";
 
 function App() {
   const [datos, setDatos] = useState([]); 
@@ -132,6 +131,10 @@ auth.currentUser?.getIdToken().then(token => {
       <a href="/inicio" target="_blank" rel="noopener noreferrer">
   <button>Abrir en otra pestaña</button>
 </a>
+    <nav>
+      <Link to="/">Inicio</Link>
+      <Link to="/about">Acerca de</Link>
+    </nav>
     </Router>
   );
 }
