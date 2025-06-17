@@ -7,9 +7,4 @@ export default defineConfig({
     port: 5173,
     host: 'localhost',
   },
-  build: {
-    rollupOptions: {
-      external: ['firebase/auth']
-    }
-  }
 });
