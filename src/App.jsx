@@ -1,3 +1,4 @@
+import {firebaseApp } from "./firebase";
 import { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -11,7 +12,7 @@ function App() {
   const [usuario, setUsuario] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const auth = getAuth();
+  const auth = getAuth(firebaseApp);
 
   async function obtenerMensajes() {
   if (!usuario) return;
