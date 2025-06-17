@@ -27,12 +27,17 @@ function App() {
     setDatos([]);
   }
 
-  async function printIdToken() {
-  const user = auth.currentUser;
-  if (!user) {
-    console.error("No hay usuario logueado");
+
+async function obtenerIdToken() {
+  if (!auth.currentUser) {
+    console.error("⚠️ No hay usuario autenticado.");
     return;
   }
+  const token = await auth.currentUser.getIdToken();
+  console.log("🔑 ID Token obtenido:", token);
+
+
+
   // Esto es tu ID token: un string largo tipo “eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9…”
   const idToken = await user.getIdToken();
   console.log("Mi ID token:", idToken);
@@ -59,6 +64,7 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     setUsuario(user);
     console.log("Usuario autenticado tras recarga:", user.email);
+   obtenerIdToken(); 
 
     // Creamos una función async dentro del callback
     (async () => {
