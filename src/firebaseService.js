@@ -1,5 +1,29 @@
 import { auth } from "./firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, } from "firebase/auth";
+import { getAuth, getIdTokenResult } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "./firebase"; // Tu configuración de Firestore
+
+export async function getUserClaims() {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  
+  // Verifica que exista un usuario autenticado
+  if (!user) {
+    console.warn("No hay usuario autenticado.");
+    return null;
+  }
+  
+  try {
+    const tokenResult = await getIdTokenResult(user);
+    // Devuelve los custom claims, por ejemplo: tokenResult.claims
+    // Si asignaste el rol en 'customRole', lo encontrarás en tokenResult.claims.customRole
+    return tokenResult.claims;
+  } catch (error) {
+    console.error("Error obteniendo custom claims:", error);
+    return null;
+  }
+}
 
 export const registrarUsuario = async (email, password) => {
   try {
@@ -32,7 +56,7 @@ export const cerrarSesion = async () => {
   try {
     await signOut(auth);
     console.log("Sesión cerrada exitosamente");
-    window.location.href = "/login"; // Redirigir a la página de inicio de sesión
+    window.location.href = "/"; // Redirigir a la página de inicio de sesión
   } catch (error) {
     console.error("Error al cerrar sesión:", error);
   }
