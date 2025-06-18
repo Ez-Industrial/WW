@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Inicio from "./pages/Inicio";
 import Sobre from "./pages/Sobre";
-import Home from "./pages/home";
 import Registrar from "./pages/registrar";
+import Prueba from "./pages/prueba";
 import Perfil from "./pages/Perfil";
+import Home from "./clipages/home";
 import Homelav from "./lavpages/homelav";
+
 
 function App() {
 
@@ -17,6 +19,7 @@ function App() {
         <Route path="/registrar" element={<Registrar />} />
         <Route path="/homelav" element={<Homelav />} />
         <Route path="/perfil" element={<Perfil />} />
+        <Route path="/prueba" element={<Prueba />} />
       </Routes>
     </BrowserRouter>
   );

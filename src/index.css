@@ -36,7 +36,8 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
+  margin-left: 5px;
+  border-radius: 6px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
@@ -94,7 +95,16 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   height: 100vh; /* Ajusta para ocupar toda la pantalla */
+  width: 100vw;
   text-align: center;
+}
+
+.contenedor-columnas {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .contenedor {
@@ -113,4 +123,25 @@ button:focus-visible {
 .registro-contenedor {
   margin-top: 40px; /* Más separación */
   text-align: center;
+}
+/* Asegúrate de que html y body ocupen el 100% de la altura */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor principal */
+.fondo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;   /* Coloca los elementos al final del contenedor verticalmente */
+  align-items: center;         /* Centra los elementos horizontalmente */
+  height: 100vh;               /* Ocupa toda la altura de la pantalla */
+}
+
+/* Ajusta la distancia desde el borde inferior si es necesario */
+.datos {
+  margin-bottom: 20px;         /* Puedes ajustar este valor */
+  text-align: center;          /* Centra el contenido dentro del contenedor */
 }

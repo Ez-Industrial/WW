@@ -18,7 +18,7 @@ const Registrar = () => {
   };
 
   return (
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+      <div className= "contenedor-centro">
       <h1>Registro</h1>
       <form onSubmit={handleRegister}>
         <input type="email" placeholder="Correo" value={email} onChange={(e) => setEmail(e.target.value)} required />

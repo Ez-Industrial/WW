@@ -7,7 +7,7 @@ function Sobre() {
   };
 
   return (
-    <div>
+    <div className= "contenedor-centro">
       <h1>Esta es la página Sobre</h1>
       <button onClick={handleClick}>Ir a Home</button>
     </div>
