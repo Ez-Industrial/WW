@@ -11,7 +11,7 @@ const Registrar = () => {
     e.preventDefault();
     try {
       await registrarUsuario(email, password);
-      navigate("/perfil"); // Redirige al perfil tras el registro exitoso
+      navigate("/"); 
     } catch (error) {
       console.error("Error en registro:", error);
     }

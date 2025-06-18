@@ -6,11 +6,12 @@ import Prueba from "./pages/prueba";
 import Perfil from "./pages/Perfil";
 import Home from "./clipages/home";
 import Homelav from "./lavpages/homelav";
+import { AuthProvider } from "./AuthContext";
 
 
 function App() {
-
   return (
+   <AuthProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home />} />
@@ -22,6 +23,7 @@ function App() {
         <Route path="/prueba" element={<Prueba />} />
       </Routes>
     </BrowserRouter>
+  </AuthProvider>
   );
 }
 

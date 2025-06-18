@@ -1,12 +1,33 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext";
 function Inicio (){
   const navigate = useNavigate();
+  const { user, role } = useAuth();
+
   const lavarauto = () => {
-    navigate("/home");
+        if (!user){
+        alert("Debes Iniciar Sesión o Registrarte")
+        navigate("/registrar");
+        } else {
+        navigate("/home");
+        }
   };
   const lavador = () => {
-    navigate("/homelav");
+        if (!user) {
+        alert("Debes Iniciar Sesión o Registrarte")
+        navigate("/registrar");
+        }else {
+      if (role === "cliente") {
+        alert("La opción 'Lavar auto' no está disponible para clientes.");
+      } else if (role === "lavador" || role === "admin") {
+        navigate("/lavar-auto");
+      } else {
+        alert("No tienes permisos para esta acción.");
+      }
+    }
   };
+
   return (
     <div className="contenedor-centro">
       <h1>Wash Wheels</h1>
