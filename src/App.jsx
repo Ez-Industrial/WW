@@ -1,130 +1,19 @@
-import {firebaseApp } from "./firebase";
-import { useState, useEffect } from 'react';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './home';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { Link } from "react-router-dom";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Inicio from "./pages/Inicio";
+import Sobre from "./pages/Sobre";
+import Home from "./pages/home";
+import Registrar from "./pages/registrar";
 function App() {
-  const [datos, setDatos] = useState([]); 
-  const [mensaje, setMensaje] = useState("");
-  const [usuario, setUsuario] = useState(null);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const auth = getAuth(firebaseApp);
-
-  async function obtenerMensajes() {
-  if (!usuario) return;
-
-  try {
-    const response = await fetch(`https://washwheels.vercel.app/mensajes/${usuario.uid}`);
-    const data = await response.json();
-    console.log("Mensajes filtrados del usuario:", data);
-    setDatos(Array.isArray(data) ? data : []);
-  } catch (error) {
-    console.error("Error obteniendo mensajes:", error);
-    setDatos([]);
-  }
-
-
-async function obtenerIdToken() {
-  if (!auth.currentUser) {
-    console.error("⚠️ No hay usuario autenticado.");
-    return;
-  }
-  const token = await auth.currentUser.getIdToken();
-  console.log("🔑 ID Token obtenido:", token);
-}
-}
-
-async function fetchProfile() {
-  const user = auth.currentUser;
-  if (!user) throw new Error("No estás logueado");
-
-  const token = await user.getIdToken();
-  const res = await fetch("https://washwheels.vercel.app/profile", {
-    headers: { Authorization: `Bearer ${token}` }
-  });
-  const data = await res.json();
-  console.log("Mi perfil:", data);
-}
-  
-useEffect(() => {
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    setUsuario(user);
-    console.log("Usuario autenticado tras recarga:", user.email);
-
-    (async () => {
-      try {
-        const token = await user.getIdToken();
-        console.log("🔑 ID Token obtenido:", token);
-
-        const res = await fetch("https://washwheels.vercel.app/profile", {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        const profile = await res.json();
-        console.log("Perfil cargado:", profile);
-
-        obtenerMensajes(); // Cargar mensajes del usuario al recargar la página
-      } catch (error) {
-        console.error("⚠️ Error al obtener el perfil:", error);
-      }
-    })(); // Se ejecuta inmediatamente
-  } else {
-    setUsuario(null);
-  }
-});
-
-auth.currentUser?.getIdToken().then(token => {
-    fetch("https://washwheels.vercel.app/profile", {
-      headers: { 
-        "Authorization": `Bearer ${token}` 
-      }
-    })
-    .then(res => res.json())
-    .then(data => console.log("Mi perfil:", data))
-    .catch(console.error);
-  });
-  
-  obtenerMensajes();
-  }, []);
- 
-  const enviarDatos = async () => {
-  if (!usuario) {
-    console.error("Usuario no autenticado.");
-    return;
-  }
-
-  try {
-    const response = await fetch("https://washwheels.vercel.app/api/test", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ mensaje, uid: usuario.uid }) // ✅ Enviar el UID correctamente
-    });
-
-    const data = await response.json();
-    console.log("Mensaje guardado:", data);
-    obtenerMensajes(); // 🔄 Recargar mensajes después de enviar uno nuevo
-  } catch (error) {
-    console.error("Error al enviar datos:", error);
-  }
-};
 
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-    </Routes>
-      <a href="/inicio" target="_blank" rel="noopener noreferrer">
-  <button>Abrir en otra pestaña</button>
-</a>
-    <nav>
-      <Link to="/">Inicio</Link>
-      <Link to="/about">Acerca de</Link>
-    </nav>
-    </Router>
+        <Route path="/about" element={<Sobre />} />
+        <Route path="/inicio" element={<Inicio />} />
+        <Route path="/registrar" element={<Registrar />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

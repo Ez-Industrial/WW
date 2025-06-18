@@ -1,36 +1,48 @@
 import { auth } from "./firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
-// Registro de usuario con correo y contraseña
-export async function registrarUsuario(email, password) {
+const navigate = useNavigate();
+
+export const registrarUsuario = async (email, password) => {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    console.log("Usuario registrado:", userCredential.user);
-    return userCredential.user; // Retorna datos del usuario
+    await createUserWithEmailAndPassword(auth, email, password);
+    console.log("Usuario registrado");
   } catch (error) {
-    console.error("Error en el registro:", error.message);
-    throw error;
+    console.error("Error en registro:", error);
   }
-}
-
-// Inicio de sesión con correo y contraseña
-export async function loginCorreo(email, password) {
+};
+export const ingresarUsuario = async (email, password) => {
   try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    console.log("Usuario autenticado:", userCredential.user);
-    return userCredential.user;
+    await signInWithEmailAndPassword(auth, email, password);
+    console.log("Inicio de sesión exitoso");
+    window.location.href = "/perfil"; // Redirección tras login
   } catch (error) {
-    console.error("Error al iniciar sesión:", error.message);
-    throw error;
+    console.error("Error al iniciar sesión:", error);
   }
-}
-
-// Cerrar sesión
-export async function logout() {
+};
+export const verificarSesion = (callback) => {
+  onAuthStateChanged(auth, (user) => {
+    callback(user);
+  });
+};
+export const cerrarSesion = async () => {
   try {
     await signOut(auth);
-    console.log("Sesión cerrada");
+    console.log("Sesión cerrada exitosamente");
+    window.location.href = "/login"; // Redirigir a la página de inicio de sesión
   } catch (error) {
-    console.error("Error al cerrar sesión:", error.message);
+    console.error("Error al cerrar sesión:", error);
   }
-}
+};
+
+const ingresarUsuario = async (email, password) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    console.log("Inicio de sesión exitoso");
+    navigate("/perfil"); // Redirigir al perfil
+  } catch (error) {
+    console.error("Error al iniciar sesión:", error);
+  }
+};
+
