@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
 
-function Home() {
+function Homelav() {
   const navigate = useNavigate();
 
   return (
     <div className="contenedor-centro">
       <h1>Wash Wheels</h1>
-      <h2>Inicio para solicitar lavado</h2>
+      <h2>Inicio para ser lavador</h2>
     </div>
     
   );
 }
 
-export default Home;
+export default Homelav;
