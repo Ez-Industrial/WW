@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { registrarUsuario } from "../services/firebaseService"; // Asegúrate de la ruta correcta
+import { registrarUsuario } from "../firebaseService"; // Asegúrate de la ruta correcta
 import { useNavigate } from "react-router-dom";
 
 const Registrar = () => {
@@ -18,7 +18,7 @@ const Registrar = () => {
   };
 
   return (
-    <div>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
       <h1>Registro</h1>
       <form onSubmit={handleRegister}>
         <input type="email" placeholder="Correo" value={email} onChange={(e) => setEmail(e.target.value)} required />

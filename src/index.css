@@ -66,3 +66,51 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Centrar texto */
+.texto-centro {
+  text-align: center;
+}
+
+/* Posicionar texto */
+.texto-arriba {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.texto-abajo {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Contenedor centrado */
+.contenedor-centro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Ajusta para ocupar toda la pantalla */
+  text-align: center;
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* Espacio entre elementos */
+}
+
+.link-registro {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.registro-contenedor {
+  margin-top: 40px; /* Más separación */
+  text-align: center;
+}
