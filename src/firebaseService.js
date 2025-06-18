@@ -42,7 +42,7 @@ export const ingresarUsuario = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
     console.log("Inicio de sesión exitoso");
-    window.location.href = "/perfil"; // Redirección tras login
+    window.location.href = "/"; // Redirección tras login
   } catch (error) {
     console.error("Error al iniciar sesión:", error);
   }

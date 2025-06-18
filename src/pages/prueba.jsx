@@ -25,6 +25,9 @@ function Prueba (){
   const perfil = () => {
     navigate("/perfil");
   };
+  const iniciosesion = () => {
+    navigate("/iniciar-sesion");
+  }
   return (
     
     <div className="contenedor-centro">
@@ -41,6 +44,7 @@ function Prueba (){
       <button onClick={inicio}>Ir a Inicio</button>
       <button onClick={registrar}>Ir a Registrar</button>
       <button onClick={perfil}>Ir a Perfil</button>
+      <button onClick={iniciosesion}>Ir a Iniciar Sesión</button>
       </div>  
     </div>
     

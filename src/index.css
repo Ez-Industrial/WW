@@ -145,3 +145,14 @@ html, body {
   margin-bottom: 20px;         /* Puedes ajustar este valor */
   text-align: center;          /* Centra el contenido dentro del contenedor */
 }
+.password-container {
+    position: relative;
+    display: inline-block;
+}
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
