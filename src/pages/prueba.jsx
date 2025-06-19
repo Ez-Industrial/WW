@@ -1,11 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import React from "react";
-import { useAuth } from "../AuthContext";
+
 function Prueba (){
-  const { user } = useAuth();
-  if (!user) {
-    return <p>No hay usuario autenticado</p>;
-  }
   const navigate = useNavigate();
   const lavarauto = () => {
     navigate("/home");
@@ -26,16 +21,10 @@ function Prueba (){
     navigate("/perfil");
   };
   const iniciosesion = () => {
-    navigate("/iniciar-sesion");
+    navigate("/iniciarsesion");
   }
   return (
-    
-    <div className="contenedor-centro">
-      <h2>Perfil del Usuario</h2>
-      <p><strong>Correo:</strong> {user.email}</p>
-      <p>
-        <strong>Rol:</strong> {user.customRole ? user.customRole : "Rol no asignado"}
-      </p>
+  <div className="contenedor-centro">
       <h1>Prueba</h1>
       <div className= "datos">
       <button onClick={lavarauto}>Ir a Home Cliente</button>

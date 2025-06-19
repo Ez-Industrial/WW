@@ -25,7 +25,7 @@ function IniciarSesion () {
         </button>
       </form>
       <div className= "contenedor-centro">
-      <p>¿No tienes una cuenta? <a href="/registrar">Registrarse</a></p>
+      <p>¿No tienes una cuaenta? <a href="/registrar">Registrarse</a></p>
     </div>
     </div>
   );
