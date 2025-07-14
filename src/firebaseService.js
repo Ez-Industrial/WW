@@ -1,4 +1,4 @@
-//firebaseService.js
+//firebaseService.jsaa
 import { auth } from "./config/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, getAuth, sendEmailVerification } from "firebase/auth";
 
