@@ -1,30 +1,42 @@
 // AuthContext.jsx
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase"; // Tu configuración de Firebase
-
+import { createContext, useContext, useState, useEffect } from "react";
+import { onAuthStateChanged }                           from "firebase/auth";
+import { doc, getDoc }                                  from "firebase/firestore";
+import { auth, db }                                     from "./config/firebase";
 const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
-
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [role, setRole] = useState("");
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      if (currentUser) {
-        setRole(currentUser.customRole || "cliente");
-      } else {
-        setRole("");
+    const unsub = onAuthStateChanged(auth, async fbUser => {
+      if (!fbUser) {
+        setUser(null);
+        return;
       }
+      if (!fbUser.emailVerified) {
+        setUser(null);
+        return;
+      }
+
+      const ref  = doc(db, "usuarios", fbUser.uid);
+      const snap = await getDoc(ref);
+      const data = snap.exists() ? snap.data() : {};
+
+      setUser({
+        uid:   fbUser.uid,
+        email: fbUser.email,
+        name:  fbUser.displayName,
+        emailVerified:  fbUser.emailVerified,
+        rol:   data.rol ?? null
+      });
     });
-    return () => unsubscribe();
-  }, []);
+    return () => unsub();
+  }, [auth, db]);
 
   return (
-    <AuthContext.Provider value={{ user, role }}>
+    <AuthContext.Provider value={{ user }}>
       {children}
     </AuthContext.Provider>
   );

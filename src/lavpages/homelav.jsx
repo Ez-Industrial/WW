@@ -1,15 +1,32 @@
-import { useNavigate } from "react-router-dom";
+// src/lavpages/Homelav.jsx
+import React, { useEffect, useRef, useState } from 'react';
+import Mapa from '../pages/mapa';
 
-function Homelav() {
-  const navigate = useNavigate();
+export default function Homelav() {
+  const [userPos, setUserPos] = useState([20.7, -103.3]);
 
-  return (
-    <div className="contenedor-centro">
-      <h1>Wash Wheels</h1>
-      <h2>Inicio para ser lavador</h2>
+  useEffect(() => {
+    const watcher = navigator.geolocation.watchPosition(
+      ({ coords }) =>
+        setUserPos([coords.latitude, coords.longitude]),
+      console.error,
+      { enableHighAccuracy: true, maximumAge: 5000 }
+    );
+   return () => navigator.geolocation.clearWatch(watcher);
+  }, []);
+
+   return (
+    <div className="lavador-cen">
+              <Mapa userPos={userPos} />
+      <div className="info-below">
+        <h2>Detalles de lavadores</h2>
+        <p>Aquí puedes poner filtros, lista de lavadores, aaaaaaaaaaaaaaaaaaaaaaaaa</p>
+      </div>
+        <p>Aquí puedes poner filtros, lista de lavadores, aaaaaaaaaaaaaaaaaaaaaaaaa</p>
+        <p>Aquí puedes poner filtros, lista de lavadores, aaaaaaaaaaaaaaaaaaaaaaaaa</p>
+        <p>Aquí puedes poner filtros, lista de lavadores, aaaaaaaaaaaaaaaaaaaaaaaaa</p>
     </div>
-    
   );
 }
 
-export default Homelav;
+

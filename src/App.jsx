@@ -8,8 +8,11 @@ import Home from "./clipages/home";
 import Homelav from "./lavpages/homelav";
 import { AuthProvider } from "./AuthContext";
 import IniciarSesion from "./pages/IniciarSesion";
-
-function App() {
+import AsignarRol from "./pages/AsignarRol";
+import VerifyEmail from "./VerifyEmail";
+import CheckEmail from "./check-email"
+import SolicitudForm from "./pages/SolicitudForm";
+function App(){
   return (
    <AuthProvider>
     <BrowserRouter>
@@ -22,6 +25,11 @@ function App() {
         <Route path="/homelav" element={<Homelav />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/prueba" element={<Prueba />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="/__/auth/action" element={<VerifyEmail />} />
+        <Route path= "/usuariorol" element={<AsignarRol />} />
+        <Route path="/check-email" element={<CheckEmail />} />
+        <Route path="/formulario" element={<SolicitudForm />} />
       </Routes>
     </BrowserRouter>
   </AuthProvider>

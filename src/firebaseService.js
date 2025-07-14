@@ -1,64 +1,45 @@
-import { auth } from "./firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, } from "firebase/auth";
-import { getAuth, getIdTokenResult } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "./firebase"; // Tu configuración de Firestore
+//firebaseService.js
+import { auth } from "./config/firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, getAuth, sendEmailVerification } from "firebase/auth";
 
-export async function getUserClaims() {
-  const auth = getAuth();
-  const user = auth.currentUser;
-  
-  // Verifica que exista un usuario autenticado
-  if (!user) {
-    console.warn("No hay usuario autenticado.");
-    return null;
-  }
-  
-  try {
-    const tokenResult = await getIdTokenResult(user);
-    // Devuelve los custom claims, por ejemplo: tokenResult.claims
-    // Si asignaste el rol en 'customRole', lo encontrarás en tokenResult.claims.customRole
-    return tokenResult.claims;
-  } catch (error) {
-    console.error("Error obteniendo custom claims:", error);
-    return null;
-  }
-}
-
+export const actionCodeSettings = { 
+  url: "https://wash-wheels.web.app/",
+  handleCodeInApp: true };
 export const registrarUsuario = async (email, password) => {
   try {
-    await createUserWithEmailAndPassword(auth, email, password);
-    console.log("Usuario registrado");
-  } catch (error) {
-    if (error.code === 'auth/email-already-in-use') {
-      console.error("El correo ya está en uso:", error);
-      window.location.href = "/";
-    } else {
-      console.error("Error en registro:", error);
-    }
-  }
+    const { user } = await createUserWithEmailAndPassword(auth, email, password);
+    console.log("Usuario registrado", user.uid);
+    await sendEmailVerification(user, actionCodeSettings);
+    console.log("Email de verificación enviado a:", email);
+    alert("¡Mail de verificación enviado! Revisa tu bandeja.");
+    return user;}
+     catch (error) {
+     console.error("Error en registro:", error);
+     throw error;}
 };
+
 export const ingresarUsuario = async (email, password) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
-    console.log("Inicio de sesión exitoso");
-    window.location.href = "/"; // Redirección tras login
+    const { user } = await signInWithEmailAndPassword(auth, email, password);
+    console.log("Inicio de sesión exitoso:", user.uid);
+    if (!user.emailVerified) {
+      await sendEmailVerification(user, actionCodeSettings);
+      console.log("Reenviando email de verificación a:", email);
+      alert("Te hemos reenviado el correo de verificación");
+    }
+    return user;
   } catch (error) {
     console.error("Error al iniciar sesión:", error);
+    throw error;
   }
 };
-export const verificarSesion = (callback) => {
-  onAuthStateChanged(auth, (user) => {
-    callback(user);
-  });
-};
+
 export const cerrarSesion = async () => {
   try {
     await signOut(auth);
     console.log("Sesión cerrada exitosamente");
-    window.location.href = "/"; // Redirigir a la página de inicio de sesión
   } catch (error) {
     console.error("Error al cerrar sesión:", error);
+    throw error;
   }
 };
-

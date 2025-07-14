@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 function Inicio (){
   const navigate = useNavigate();
-  const { user, role } = useAuth();
-
+  const { user } = useAuth();
+  const rol = user?.rol;
+  console.log("ROL ACTUAL:", rol);
+  
   const lavarauto = () => {
         if (!user){
         alert("Debes Iniciar Sesión o Registrarte")
@@ -18,10 +20,10 @@ function Inicio (){
         alert("Debes Iniciar Sesión o Registrarte")
         navigate("/registrar");
         }else {
-      if (role === "cliente") {
+      if (rol === "cliente") {
         alert("La opción 'Lavar auto' no está disponible para clientes.");
-      } else if (role === "lavador" || role === "admin") {
-        navigate("/lavar-auto");
+      } else if (rol === "lavador" || rol === "admin") {
+        navigate("/homelav");
       } else {
         alert("No tienes permisos para esta acción.");
       }

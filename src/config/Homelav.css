@@ -1,0 +1,13 @@
+/* Homelav.css */
+.lavador-cen { display: flex; flex-direction: column; align-items: center; gap: 2rem; justify-content: center ; 
+/* height: 100vh;*/ width: 100vw; } 
+
+.map-container { position: relative; border: 3px solid #ccc; overflow: hidden; }
+
+#map { width: 80%; height: 400px;}
+
+.info-below { display: flex; flex-direction: column; align-items: center; justify-content: center; 
+ text-align: center;  padding: 1rem; border: 1px solid #ddd; background: #f9f9f9;}
+
+.locate-btn { position: absolute; top:40%; right: 12%; background: white; align-items: center; 
+ border-radius: 20px; padding: 0.3em 0.6em; cursor: pointer; z-index: 1000;}

@@ -7,7 +7,8 @@ function AsignarRol() {
   const [uid, setUid] = useState("");
   const [rol, setRol] = useState("");
   const [mensaje, setMensaje] = useState("");
-
+  const [claims, setClaims] = useState(null);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = getAuth().currentUser;
@@ -15,8 +16,7 @@ function AsignarRol() {
 
     try {
       const token = await user.getIdToken();
-      await axios.post(
-        "/asignar-rol",
+      await axios.post("https://washwheels.vercel.app/api/roles/asignar-rol" ,
         { uid, rol },
         {
           headers: {
@@ -24,6 +24,11 @@ function AsignarRol() {
           }
         }
       );
+    await user.getIdToken(true);
+    const result = await user.getIdTokenResult();  
+    console.log("user recibido:", user);
+console.log("typeof user.getIdToken:", typeof user.getIdToken);
+    setClaims(result.claims);
       setMensaje(`✅ Rol "${rol}" asignado correctamente al usuario.`);
     } catch (error) {
       console.error("Error al asignar rol:", error);
@@ -32,7 +37,7 @@ function AsignarRol() {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div className= "contenedor-centro">
       <h2>Asignar Rol a Usuario</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -48,9 +53,10 @@ function AsignarRol() {
           <option value="lavador">lavador</option>
           <option value="admin">admin</option>
         </select><br/><br/>
-        <button type="submit">Asignar Rol</button>
+        <button type="submit" disabled={!uid || !rol}>  Asignar Rol</button>
       </form>
       {mensaje && <p>{mensaje}</p>}
+      {claims?.rol && (<p><strong>Rol actualizado:</strong> {claims.rol}</p>)}
     </div>
   );
 }

@@ -1,37 +1,49 @@
+//registrar
 import { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { registrarUsuario } from "../firebaseService";
-
+import axios from "axios";
+import { registrarUsuario } from "../firebaseService"
 const Registrar = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
   const navigate = useNavigate();
-  const auth = getAuth();
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  const togglePasswordVisibility = () => { setShowPassword(!showPassword);};
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await registrarUsuario(email, password);
-      navigate("/"); 
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
+      console.log("Email:", email, "– type:", typeof email);
+      const user = await registrarUsuario(email, password);
       await updateProfile(user, { displayName: username });
-      console.log("Usuario registrado:", user);
-      navigate("/");
+      
+      const payload = {
+      uid:    user.uid,
+      nombre: username || "Invitado",
+      email:  user.email,
+      rol: "cliente" };
 
+      const res = await axios.post(
+        "https://washwheels.vercel.app/api/usuarios",
+       payload
+      );
+      console.log("✅ Backend respondió:", res.data);
+
+
+       navigate("/check-email");
     } catch (error) {
-      console.error("Error en registro:", error);
+      console.error("❌ Error en registro:", error);
+      const msg = error.code === "auth/email-already-in-use"
+        ? "Correo ya registrado. Inicia sesión."
+        : "Ocurrió un error. Revisa la consola.";
+      alert(msg);
     }
   };
+
+
 
   return (
       <div className= "contenedor-centro">
@@ -43,13 +55,7 @@ const Registrar = () => {
           <input
             type={showPassword ? 'text' : 'password'} placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} required style={{ paddingRight: '40px' }} />
           <span className="toggle-password" onClick={() => setShowPassword(!showPassword)}
-            style={{
-              position: 'absolute',
-              right: '10px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              cursor: 'pointer'
-            }}> {showPassword ? '🙈' : '👁️'}
+            style={{  position: 'absolute',  right: '10px',  top: '50%',  transform: 'translateY(-50%)',  cursor: 'pointer'  }}> {showPassword ? '🙈' : '👁️'}
           </span>
           </div>
         <button type="submit">Registrarse</button>
