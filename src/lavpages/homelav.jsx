@@ -1,6 +1,6 @@
 // src/lavpages/Homelav.jsx
 import React, { useEffect, useRef, useState } from 'react';
-import Mapa from '../pages/mapa';
+import Mapa from '../pages/Mapa';
 
 export default function Homelav() {
   const [userPos, setUserPos] = useState([20.7, -103.3]);
