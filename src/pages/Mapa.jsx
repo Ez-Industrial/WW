@@ -14,7 +14,6 @@ export default function Mapa({ userPos }) {
     if (map && userPos) {
       map.flyTo(userPos, 18, { animate: true, duration: 1 });
     }};
-console.log('userPos1',userPos)
   useEffect(() => {
     if (!mapRef.current) {
      const map = L.map("map", { center: userPos, zoom: 16 });
@@ -29,14 +28,12 @@ console.log('userPos1',userPos)
        return () => window.removeEventListener("resize", onResize);
      }
     }, []);
-console.log('userPos2',userPos)
 
   useEffect(() => {
       if (mapRef.current) {
           mapRef.current.panTo(userPos);
         }
     }, [userPos]);
-console.log('userPos3',userPos)
 
   useEffect(() => {
       const map = mapRef.current;
@@ -79,7 +76,6 @@ console.log('userPos3',userPos)
 
       return () => unsubs.forEach((fn) => fn());   
   }, [userPos]);
-console.log('userPos4',userPos)
 
   useEffect(() => {
    const q = query(
@@ -130,7 +126,6 @@ console.log('userPos4',userPos)
     });
     return () => unsub();
   }, []);
-console.log('userPos5',userPos)
 
   return (
   <div className='lavador-cen'>

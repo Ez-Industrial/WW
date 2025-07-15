@@ -68,9 +68,23 @@ html, body { height: 90%; margin: 0; padding: 0; margin-top: 2%;}
 
 .solicitud-form { display: flex; flex-direction: column; align-items: stretch; gap: 1rem; width: 100%;
  max-width: 400px; background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
- 
-.robototexto4 { font-family: 'Roboto', sans-serif; line-height:1.5; font-weight: 400; font-size: normal;}
-
-.robototexto7 { font-family: 'Roboto', sans-serif; line-height:1.5; font-weight: 700; font-size: normal;}
 
 .mini-map {  width: 100%; height: 200px; border: 1px solid #ccc;}
+
+ /*Fuentes*/
+.robototexto4 { font-family: 'Roboto', sans-serif; line-height:1.5; font-weight: 400; font-size: normal;}
+.robototexto7 { font-family: 'Roboto', sans-serif; line-height:1.5; font-weight: 700; font-size: normal;}
+.segoe-ui { font-family: 'Segoe UI', sans-serif ;}
+.segoe-ui7 { font-family: 'Segoe UI', sans-serif ; font-weight: 700;}
+.helvetica-neue { font-family: 'Helvetica Neue', sans-serif ;}
+.helvetica-neue7 { font-family: 'Helvetica Neue', sans-serif ; font-weight: 700;}
+.poppins { font-family: 'Poppins', sans-serif ;}
+.poppins7 { font-family: 'Poppins', sans-serif ; font-weight: 700;}
+.raleway { font-family: 'Raleway', sans-serif ;}
+.raleway7 { font-family: 'Raleway', sans-serif ; font-weight: 700;}
+.quicksand { font-family: 'Quicksand', sans-serif ;}
+.quicksand7 { font-family: 'Quicksand', sans-serif ; font-weight: 700;}
+.pacifico { font-family: 'Pacifico', cursive;}
+.pacifico7 { font-family: 'Pacifico', cursive; font-weight: 700;}
+.dancing-script { font-family: 'Dancing Script', cursive;}
+.dancing-script7 { font-family: 'Dancing Script', cursive; font-weight: 700;}

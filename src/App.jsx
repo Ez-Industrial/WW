@@ -12,6 +12,7 @@ import AsignarRol from "./pages/AsignarRol";
 import VerifyEmail from "./VerifyEmail";
 import CheckEmail from "./check-email"
 import SolicitudForm from "./pages/SolicitudForm";
+import Fuentes from "./pages/Fuentes";
 function App(){
   return (
    <AuthProvider>
@@ -30,6 +31,7 @@ function App(){
         <Route path= "/usuariorol" element={<AsignarRol />} />
         <Route path="/check-email" element={<CheckEmail />} />
         <Route path="/formulario" element={<SolicitudForm />} />
+        <Route path="/fuentes" element={<Fuentes/>}/>
       </Routes>
     </BrowserRouter>
   </AuthProvider>

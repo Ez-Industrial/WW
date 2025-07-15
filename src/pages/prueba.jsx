@@ -39,9 +39,6 @@ function Prueba (){
        <button onClick={iniciosesion}>Ir a Iniciar Sesión</button>
        <button onClick={usuariorol}>Ir a Roles de Usuario</button> 
       </div>
-   <p className="robototexto4"> Este párrafo tiene la tipografía F4 personalizada. </p>
-   <p className="robototexto7"> Este párrafo tiene la tipografía F7 personalizada. </p>
-
   </div>
 
   );
