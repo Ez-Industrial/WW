@@ -9,6 +9,16 @@ return(
 <p> Lorem Ipsum nada </p>
 <p className="helvetica-neue"> Lorem Ipsum Helvetica Neue. </p>
 <p className="helvetica-neue7"> Lorem Ipsum Helvetica Neue weight 700. </p>
+<p className="poppins"> Lorem Ipsum Poppins. </p>
+<p className="poppins7"> Lorem Ipsum Poppins weight 700. </p>
+<p className="raleway"> Lorem Ipsum Raleway. </p>
+<p className="raleway7"> Lorem Ipsum Raleway weight 700. </p>
+<p className="quicksand"> Lorem Ipsum Quicksand. </p>
+<p className="quicksand7"> Lorem Ipsum Helvetica Neue weight 700. </p>
+<p className="helvetica-neue"> Lorem Ipsum Helvetica Neue. </p>
+<p className="helvetica-neue7"> Lorem Ipsum Helvetica Neue weight 700. </p>
+<p className="helvetica-neue"> Lorem Ipsum Helvetica Neue. </p>
+<p className="helvetica-neue7"> Lorem Ipsum Helvetica Neue weight 700. </p>
 
 </div>
 );
