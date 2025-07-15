@@ -14,7 +14,7 @@ export default function Mapa({ userPos }) {
     if (map && userPos) {
       map.flyTo(userPos, 18, { animate: true, duration: 1 });
     }};
-
+console.log('userPos1',userPos)
   useEffect(() => {
     if (!mapRef.current) {
      const map = L.map("map", { center: userPos, zoom: 16 });
@@ -29,12 +29,15 @@ export default function Mapa({ userPos }) {
        return () => window.removeEventListener("resize", onResize);
      }
     }, []);
+console.log('userPos2',userPos)
+
   useEffect(() => {
       if (mapRef.current) {
           mapRef.current.panTo(userPos);
         }
     }, [userPos]);
-  
+console.log('userPos3',userPos)
+
   useEffect(() => {
       const map = mapRef.current;
       if (!map) return;
@@ -76,25 +79,28 @@ export default function Mapa({ userPos }) {
 
       return () => unsubs.forEach((fn) => fn());   
   }, [userPos]);
- useEffect(() => {
-    if (!mapRef.current) {
-      const map = L.map('map', { center: [20.7, -103.3], zoom: 12 });
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
-       .addTo(map);
-      mapRef.current = map;
-    }
-  }, []);
+console.log('userPos4',userPos)
 
   useEffect(() => {
-    const q = query(
+   const q = query(
       collection(db, 'solicitudes'),
       where('status', '==', 'pending')
     );
-    const unsub = onSnapshot(q, snap => {
-      snap.docChanges().forEach(change => {
-        const id = change.doc.id;
-        const data = change.doc.data();
-        const pos = [data.coords.lat, data.coords.lng];
+   const unsub = onSnapshot(q, snap => {
+    snap.docChanges().forEach(change => {
+     const id = change.doc.id;
+     const data = change.doc.data();
+     const c = data.coords || {};
+     const lat = typeof c.lat === 'number'      ? c.lat 
+               : typeof c.latitude === 'number' ? c.latitude 
+               : undefined;
+     const lng = typeof c.lng === 'number'      ? c.lng 
+               : typeof c.longitude === 'number'? c.longitude 
+               : undefined;
+     if (lat == null || lng == null) {
+      console.warn(`Coordenadas inválidas para ${change.doc.id}:`, c);
+      return; }
+      const pos = [lat, lng];
 
         if (change.type === 'added') {
           const marker = L.marker(pos).addTo(mapRef.current)
@@ -103,7 +109,7 @@ export default function Mapa({ userPos }) {
               ${data.carModel}<br/>
               <button id="accept-${id}">Aceptar</button>
             `);
-          markersRef.current[id] = marker;
+          markersRef.current[change.doc.id] = marker;
           marker.on('popupopen', () => {
             document
               .getElementById(`accept-${id}`)
@@ -124,6 +130,7 @@ export default function Mapa({ userPos }) {
     });
     return () => unsub();
   }, []);
+console.log('userPos5',userPos)
 
   return (
   <div className='lavador-cen'>

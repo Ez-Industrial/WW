@@ -1,12 +1,12 @@
 // src/pages/SolicitudForm.jsx
-import React, { use, useEffect, useState } from 'react';
+import React, { use, useEffect, useRef, useState } from 'react';
 import { db } from '../config/firebase';
 import { collection, addDoc, serverTimestamp,Timestamp } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css'
 export default function SolicitudForm() {
-  const [coords, setCoords] = useState({ lat: 20.7, lng: -103.3 });
+  const [coords, setCoords] = useState({ lat: 19.5438, lng: -96.9106 });
   const [carModel, setCarModel] = useState('');
   const [notes, setNotes] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -17,7 +17,12 @@ export default function SolicitudForm() {
   const [color, setColor]     = useState('');
   const [customColor, setCustomColor] = useState('');
   const [customCarModel, setCustomCarModel] = useState('');
-  
+  const [clientId, setClientId] = useState(null);
+  const [clientName, setClientName] = useState('');
+  const mapContainerRef =useRef(null);
+  const mapRef = useRef(null);
+  const markerRef = useRef(null);
+
   const finalCarModel =
   marca === 'Otro'
     ? customCarModel
@@ -37,24 +42,33 @@ export default function SolicitudForm() {
   "Verde", "Amarillo", "Plateado", "Dorado", "Otro"];
 
   useEffect(() => 
-  { const map= L.map('mini-map', { center:[coords.lat, coords.lng], zoom:13, scrollWheelZoom: false });
-    L.tileLayer('https://{s}.title.openstreetmap.org/{z}/{x}/{y}.png')
-     .addTo(map);
-   map.on('click', e=> {
-    const{ lat, lng} = e.latlng;
-    setCoords ({ lat, lng});
-    if (markerRef.current) {
-     markerRef.setLatLng(e.latlng);
-   } else { markerRef.current = L.marker(e.latlng, {draggable: true})
-        .addTo(map)
-        .on('dragend', ev=> {
-          setCoords(ev.target.getLatLng());
-        });
-   }
-   });
-   mapRef.current = map;
-   return () => map.remove();
+  { if (!mapContainerRef.current) return
+    mapRef.current = L.map(mapContainerRef.current,{ center:[coords.lat, coords.lng], zoom:13, scrollWheelZoom: false });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+     .addTo(mapRef.current)
+
+   mapRef.current.on('click', e=> {  const { lat, lng } = e.latlng
+    setCoords({ lat, lng })
+    if (markerRef.current) { markerRef.current.setLatLng(e.latlng); } 
+    else { markerRef.current = L.marker(e.latlng, {draggable: true})
+        .addTo(mapRef.current) .on('dragend', ev=> { setCoords(ev.target.getLatLng()); })
+         }
+   })
+   return () => mapRef.current.remove();
   }, []); 
+
+  useEffect(() => {
+  if (!mapRef.current) return
+
+  // Centra el mapa en las nuevas coords
+  mapRef.current.setView([coords.lat, coords.lng], mapRef.current.getZoom())
+
+  // Mueve el marcador si ya existe
+  if (markerRef.current) {
+    markerRef.current.setLatLng([coords.lat, coords.lng])
+  }
+}, [coords])
+
   useEffect(() => {
     const auth = getAuth();
     return onAuthStateChanged(auth, user => {
@@ -78,8 +92,11 @@ export default function SolicitudForm() {
   // Captura la geoloc al montar
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
-      ({ coords }) => setCoords({ latitude: coords.latitude, longitude: coords.longitude }),
-      console.error,
+      ({ coords }) => setCoords({ lat: coords.latitude, lng: coords.longitude }),
+     err => {
+    console.error('Error obteniendo ubicación:', err);
+    alert('No se pudo obtener tu ubicación automáticamente.');
+  },
       { enableHighAccuracy: true }
     );
   }, []);
@@ -169,6 +186,8 @@ export default function SolicitudForm() {
       <label> Detalles adicionales
         <textarea value={notes} onChange={e => setNotes(e.target.value)} />
       </label>
+
+      <div ref={mapContainerRef} id="mini-map" style={{ width: '100%', height: '250px' }}/>
 
       <button type="submit" disabled={submitting}> {submitting ? 'Enviando…' : 'Enviar solicitud'} </button>
 
