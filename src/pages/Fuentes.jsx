@@ -14,11 +14,11 @@ return(
 <p className="raleway"> Lorem Ipsum Raleway. </p>
 <p className="raleway7"> Lorem Ipsum Raleway weight 700. </p>
 <p className="quicksand"> Lorem Ipsum Quicksand. </p>
-<p className="quicksand7"> Lorem Ipsum Helvetica Neue weight 700. </p>
-<p className="helvetica-neue"> Lorem Ipsum Helvetica Neue. </p>
-<p className="helvetica-neue7"> Lorem Ipsum Helvetica Neue weight 700. </p>
-<p className="helvetica-neue"> Lorem Ipsum Helvetica Neue. </p>
-<p className="helvetica-neue7"> Lorem Ipsum Helvetica Neue weight 700. </p>
+<p className="quicksand7"> Lorem Ipsum Quicksand weight 700. </p>
+<p className="pacifico"> Lorem Ipsum Pacifico. </p>
+<p className="pacifico7"> Lorem Ipsum Pacifico weight 700. </p>
+<p className="dancing-script"> Lorem Ipsum Dancing Script. </p>
+<p className="dancing-script7"> Lorem Ipsum Helvetica Neue weight 700. </p>
 
 </div>
 );
