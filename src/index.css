@@ -1,9 +1,14 @@
+/*Index.css*/
 :root {
+<<<<<<< HEAD
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;  line-height: 1.5;  font-weight: 400;
+=======
+  font-family: Helvetica, sans-serif;  line-height: 1.5;  font-weight: 400;
+>>>>>>> 76f393ddd0b17fd23ae093cbdc917a1586dbcdb0
   color-scheme: light dark;  color: rgba(255, 255, 255, 0.87);  background-color: #242424;
-  
   font-synthesis: none;  text-rendering: optimizeLegibility;  -webkit-font-smoothing: antialiased;  
   -moz-osx-font-smoothing: grayscale;}
+<<<<<<< HEAD
 
 input, textarea, select { background-color: #333; color: #fff; border: 1px solid #555;
 transform: background-color 0.3s, color 0.3s;}
@@ -21,6 +26,8 @@ button, select { background-color: #333; color: #fff;}
 
 @media (prefers-color-scheme: dark) { input, textarea, select, button { background-color: #222; color: #eee;}
   ::placeholder { color: #aaa; } label { color: #fff; } }
+=======
+>>>>>>> 76f393ddd0b17fd23ae093cbdc917a1586dbcdb0
 
 a {  font-weight: 500;  color: #646cff;  text-decoration: inherit;}
 
@@ -28,12 +35,9 @@ a:hover {  color: #535bf2;}
 
 .home-container { padding-top:2% ;}
 
-body {  margin: 0;  display: flex;  place-items: center;  min-width: 320px;  min-height: 100vh;}
-
 h1 {  font-size: 3.2em;  line-height: 1.1;}
 
-button {
-  margin-left: 5px;  border-radius: 6px;  border: 1px solid transparent;  padding: 0.6em 1.2em;  font-size: 1em;
+button { margin-left: 5px;  border-radius: 6px;  border: 1px solid transparent;  padding: 0.6em 1.2em;  font-size: 1em;
   font-weight: 500;  font-family: inherit;  background-color: #1a1a1a;  cursor: pointer;  transition: border-color 0.25s;}
 
 button:hover {  border-color: #646cff;}
@@ -43,7 +47,7 @@ button:focus-visible {  outline: 4px auto -webkit-focus-ring-color;}
 @media (prefers-color-scheme: light) {
   :root {  color: #213547;  background-color: #ffffff;  }
   a:hover {  color: #747bff; }
-  button {  background-color: #f9f9f9; }}
+  button {  background-color: #e5e5e7; }}
 
 /* Centrar texto */
 .texto-centro {  text-align: center;}
@@ -65,7 +69,9 @@ button:focus-visible {  outline: 4px auto -webkit-focus-ring-color;}
 
 .registro-contenedor { margin-top: 40px; text-align: center;}
 
-html, body { height: 90%; margin: 0; padding: 0; margin-top: 2%;}
+html, body { height: 90%; margin: .7%; padding: 0; /*margin-top: 2%;*/}
+
+.dark-mode .info-box { background-color: #2c2c2c; color: #ffffff;}
 
 /* Contenedor principal */
 .fondo { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100vh; }
@@ -77,7 +83,7 @@ html, body { height: 90%; margin: 0; padding: 0; margin-top: 2%;}
 
 .toggle-password { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;}
 
-.solicitud-form-wrapper { display: flex; align-items: center; justify-content: center; height: 100vh;
+.solicitud-form-wrapper { font-family:'Heltica Neue',sans-serif ; font-weight: 500; display: flex; align-items: center; justify-content: center; height: 100vh;
  padding: 1rem; box-sizing: border-box; width: 100vw; text-align: center;}
 
 .solicitud-form { display: flex; flex-direction: column; align-items: stretch; gap: 1rem; width: 100%;

@@ -20,7 +20,7 @@ export default function Homelav() {
   }, []);
 
    return (
-    <div className="lavador-cen">
+    <div className="home-wrapper">
               <Mapa userPos={userPos} />
       <div className="info-below">
         <h2>Detalles de lavadores</h2>
