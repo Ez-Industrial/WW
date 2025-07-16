@@ -18,7 +18,10 @@ return(
 <p className="pacifico"> Lorem Ipsum Pacifico. </p>
 <p className="pacifico7"> Lorem Ipsum Pacifico weight 700. </p>
 <p className="dancing-script"> Lorem Ipsum Dancing Script. </p>
-<p className="dancing-script7"> Lorem Ipsum Helvetica Neue weight 700. </p>
+<p className="dancing-script7"> Lorem Ipsum Dancing Script 700. </p>
+<p className="texto-centro"> Lorem Ipsum centro. </p>
+<p className="texto-arriba"> Lorem Ipsum arriba. </p>
+<p className="texto-abajo"> Lorem Ipsum abajo. </p>
 
 </div>
 );
