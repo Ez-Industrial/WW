@@ -1,20 +1,25 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;  line-height: 1.5;  font-weight: 400;
-
   color-scheme: light dark;  color: rgba(255, 255, 255, 0.87);  background-color: #242424;
   
   font-synthesis: none;  text-rendering: optimizeLegibility;  -webkit-font-smoothing: antialiased;  
   -moz-osx-font-smoothing: grayscale;}
-input, textarea, select { background-color: #333; color: #fff; border: 1px solid #555;}
-::placeholder { color: #aaa; }
-label { color: #fff; }
-button, select {
-  background-color: #333;
-  color: #fff;
-}
-body.dark-mode input, body.dark-mode textarea { background-color: #222; color: #eee;} 
 
-@media (prefers-color-scheme: dark) { input, textarea { background-color: #222; color: #eee;}
+input, textarea, select { background-color: #333; color: #fff; border: 1px solid #555;
+transform: background-color 0.3s, color 0.3s;}
+
+::placeholder { color: #aaa; transition: color 0.3s;}
+
+label { color: #fff; transition:  0.3s}
+
+body.dark-mode input, body.dark-mode textarea, body.dark-mode select,body.dark-mode button 
+{ background-color: #222; color: #eee;}
+
+input:disabled, textarea:disabled, select:disabled, button:disabled { background-color: #444; color: #888;}
+
+button, select { background-color: #333; color: #fff;}
+
+@media (prefers-color-scheme: dark) { input, textarea, select, button { background-color: #222; color: #eee;}
   ::placeholder { color: #aaa; } label { color: #fff; } }
 
 a {  font-weight: 500;  color: #646cff;  text-decoration: inherit;}
