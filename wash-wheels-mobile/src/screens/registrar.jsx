@@ -36,7 +36,7 @@ const Registrar = () => {
        navigate("/check-email");
     } catch (error) {
       console.error("❌ Error en registro:", error);
-      const msg = error.code === "auth/email-already-in-use"
+      const msg = error.code === "auth/mail-lready-in-use"
         ? "Correo ya registrado. Inicia sesión."
         : "Ocurrió un error. Revisa la consola.";
       alert(msg);

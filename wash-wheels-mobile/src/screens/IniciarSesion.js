@@ -3,12 +3,13 @@ import { registerUser, loginUser } from "../services/firebaseService";
 import { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "../core/native";
 import styles from "../styles/global";
+import { useNavigation } from "@react-navigation/native";
 
 export default function IniciarSesion () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignup, setIsSignup] = useState(false);
-
+  const navigation = useNavigation();
   const handleAuth = async () => {
     if (!email || !password) {
       Alert.alert("Por favor ingresa correo y contraseña");
@@ -17,7 +18,9 @@ export default function IniciarSesion () {
       if (isSignup) {
         await registerUser(email, password);
         Alert.alert ("Registro exitososs", "Revisa tu correo para verificar la cuenta ") 
-      } else{ await loginUser (email, password);} }
+      } else{ await loginUser (email, password);
+        navigation.reset({ index: 0, routes: [{ name: "Inicio" }]});
+      } }
       catch (error) {
       let mensaje = "Ocurrió un error";
       if (error.code === "auth/user-not-found") {

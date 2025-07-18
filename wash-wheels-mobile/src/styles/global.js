@@ -11,11 +11,16 @@ export const fonts = {
 
 export default StyleSheet.create({
   container: { flex: 1, justifyContent: "center", padding: 20, backgroundColor: "#fff", alignItems: "center" },
-  title: { fontSize: 32, textAlign: "center", marginBottom: 24, color: "#df0f66ff" },
-  input: { height: 50, borderColor: "#ccc", borderWidth: 1, borderRadius: 6, paddingHorizontal: 12, marginBottom: 16 },
-  button: { backgroundColor: "#274bb1ff", paddingVertical: 14, paddingHorizontal: 32, borderRadius: 4, marginBottom: 12 },
+  title: { fontSize: 32, textAlign: "center", marginBottom: 24, color: "#274bb1ff" },
+  input: { height: 30, borderColor: "#ccc", borderWidth: 1, borderRadius: 3, paddingHorizontal: 20, 
+            color:"#274bb1ff" , marginBottom: 16 },
+  button: { backgroundColor: "#274bb1ff", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 4,marginBottom: 9 },
   buttonText: { color: "#fff", textAlign: "center", fontSize: 16 },
-  link: { color: "#007AFF", textAlign: "center", marginTop: 8},
+  link: { color: "#274bb1ff", textAlign: "center", marginTop: 8},
   welcome: { fontSize: 28, marginBottom: 8 },
   email: { fontSize: 16, color: "#666", marginBottom: 24},
+  subtitle: { fontSize: 20, fontWeight: "600", color: "#666", marginBottom: 8, },
+  linkText: { fontSize: 16, color: "#007AFF", textDecorationLine: "underline", },
+  muted: { fontSize: 14, color: "#999",},
+  textBase: { fontSize: 16, color: "#333", lineHeight: 24, fontFamily: "System", marginBottom: 8,},
 });

@@ -10,9 +10,7 @@ export default function InicioScreen() {
   const { user } = useAuth();
   const rol = user?.rol;
   console.log("ROL ACTUAL:", rol);
-  const iraPrueba =() => {
-     console.log("Botón presionado");
-     navigation.navigate ("Prueba") };
+  const iraPrueba =() => navigation.navigate ("Prueba") ;
     const navegarComoCliente = () => navigation.navigate("Home");
   const navegarComoLavador = () => navigation.navigate("HomeLav");
   const Login = () => navigation.navigate("")
@@ -48,23 +46,13 @@ if (!user) return pedirLogin(); navegarComoCliente();
       <Text style={styles.email}>
         Bienvenido{user?.name ? `, ${user.name}` : ""}!
       </Text>
-<Pressable onPress={() => console.log("Pressable funcionando")}>
-  <Text>Probar Pressable</Text>
-</Pressable>
       <Text style={styles.email}>{user?.email}</Text>
       <TouchableOpacity style={styles.button} onPress={iraPrueba}>
-        <Text style={styles.buttonText}>Prsdadn</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => console.log("Botón de prueba")}>
-        <Text style={styles.buttonText}>Probar botón</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}onPress={() => navigation.navigate("Test")}>
-      <Text style={styles.buttonText}>Ir a TestScreen</Text>  
+        <Text style={styles.buttonText}>Prueba</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={lavarauto}>
         <Text style={styles.buttonText}>Solicitar Lavado</Text>
       </TouchableOpacity>
-
       <TouchableOpacity style={styles.button} onPress={lavador}>
         <Text style={styles.buttonText}>Ser Lavador</Text>
       </TouchableOpacity>
