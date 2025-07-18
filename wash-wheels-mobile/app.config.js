@@ -6,7 +6,7 @@ export default {
     name: "Wash Wheels",
     slug: "wash-wheels",
     version: "1.0.0",
-    sdkVersion: "50.0.0",
+    sdkVersion: "53.0.0",
     extra: {
       EXPO_FIREBASE_API_KEY: process.env.EXPO_FIREBASE_API_KEY,
       EXPO_FIREBASE_AUTH_DOMAIN: process.env.EXPO_FIREBASE_AUTH_DOMAIN,

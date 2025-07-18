@@ -1,60 +1,55 @@
-import { registerUser } from "../services/firebaseService";
+//IniciarSesion.js
+import { registerUser, loginUser } from "../services/firebaseService";
 import { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from "react-native";
-import styles from "../styles/screens/IniciarSesionStyles";
-export function IniciarSesion () {
+import { View, Text, TextInput, TouchableOpacity, Alert } from "../core/native";
+import styles from "../styles/global";
+
+export default function IniciarSesion () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignup, setIsSignup] = useState(false);
-  const navigate = useNavigate();
+
   const handleAuth = async () => {
+    if (!email || !password) {
+      Alert.alert("Por favor ingresa correo y contraseña");
+      return; }
     try {
       if (isSignup) {
         await registerUser(email, password);
         Alert.alert ("Registro exitososs", "Revisa tu correo para verificar la cuenta ") 
       } else{ await loginUser (email, password);} }
       catch (error) {
-      Alert.alert ("Error iniciar sesión:", error);
-      alert( error.code === "auth/user-not-found"
-          ? "Usuario no encontrado"
-          : error.message );
+      let mensaje = "Ocurrió un error";
+      if (error.code === "auth/user-not-found") {
+        mensaje = "Usuario no encontrado";
+      } else if (error.code === "auth/wrong-password") {
+        mensaje = "Contraseña incorrecta";
+      } else {
+        mensaje = error.message;
+      }
+      Alert.alert("Error", mensaje);
     }
   };
 
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Wash Wheels</Text>
+   <View style={styles.container}>
+    <Text style={styles.title}>Wash Wheels</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Correo electrónico"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        value={email}
-        onChangeText={setEmail}
-      />
+    <TextInput style={styles.input}
+      placeholder="Correo electrónico" keyboardType="email-address" autoCapitalize="none" value={email} onChangeText={setEmail} />
+    <TextInput style={styles.input}
+      placeholder="Contraseña" secureTextEntry value={password} onChangeText={setPassword} />
+     
+    <TouchableOpacity style={styles.button} onPress={handleAuth}>
+      <Text style={styles.buttonText}>
+       {isSignup ? "Registrarse" : "Iniciar Sesión"} </Text>
+    </TouchableOpacity>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Contraseña"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-
-      <TouchableOpacity style={styles.button} onPress={handleAuth}>
-        <Text style={styles.buttonText}>
-          {isSignup ? "Registrarse" : "Iniciar Sesión"}
-        </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => setIsSignup(!isSignup)}>
-        <Text style={styles.link}>
-          {isSignup
-            ? "¿Ya tienes cuenta? Inicia sesión"
-            : "¿No tienes cuenta? Regístrate"}
-        </Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity onPress={() => setIsSignup(!isSignup)}>
+      <Text style={styles.link}>
+          {isSignup ? "¿Ya tienes cuenta? Inicia sesión" : "¿No tienes cuenta? Regístrate"}</Text>
+    </TouchableOpacity>
+   </View>
   )
 };

@@ -1,40 +1,45 @@
-// src/screens/InicioScreen.js
+// src/screens/Inicio.js
 import React from "react";
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TouchableOpacity, Alert,Pressable } from "../core/native";
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../context/AuthContext";
-import styles from "../styles/screens/HomeStyle";
+import styles from "../styles/global";
 
-export default function Inicio() {
+export default function InicioScreen() {
   const navigation = useNavigation();
   const { user } = useAuth();
   const rol = user?.rol;
-
   console.log("ROL ACTUAL:", rol);
-
-  const lavarauto = () => {
-    if (!user) {
-      Alert.alert("Debes Iniciar Sesión o Registrarte");
-      navigation.navigate("Login");
-    } else {
-      navigation.navigate("Home");
-    }
+  const iraPrueba =() => {
+     console.log("Botón presionado");
+     navigation.navigate ("Prueba") };
+    const navegarComoCliente = () => navigation.navigate("Home");
+  const navegarComoLavador = () => navigation.navigate("HomeLav");
+  const Login = () => navigation.navigate("")
+  const pedirLogin = () => { 
+  Alert.alert("Debes Iniciar Sesión o Registrarte");
+  navigation.navigate("Login");
+};
+  const lavarauto = () => { 
+    console.log("Botón presionado");
+if (!user) return pedirLogin(); navegarComoCliente();
   };
 
   const lavador = () => {
-    if (!user) {
-      Alert.alert("Debes Iniciar Sesión o Registrarte");
-      navigation.navigate("Login");
-    } else {
-      if (rol === "cliente") {
-        Alert.alert("La opción 'Lavar auto' no está disponible para clientes.");
-      } else if (rol === "lavador" || rol === "admin") {
-        navigation.navigate("HomeLav");
-      } else {
-        Alert.alert("No tienes permisos para esta acción.");
-      }
-    }
-  };
+    console.log("Botón presionado");
+  if (!user) return pedirLogin();
+  switch (rol) {
+    case "cliente":
+      Alert.alert("La opción 'Lavar auto' no está disponible para clientes.");
+      break;
+    case "lavador":
+    case "admin":
+      navegarComoLavador();
+      break;
+    default:
+      Alert.alert("No tienes permisos para esta acción.");
+  }
+};
 
   return (
     <View style={styles.container}>
@@ -43,9 +48,19 @@ export default function Inicio() {
       <Text style={styles.email}>
         Bienvenido{user?.name ? `, ${user.name}` : ""}!
       </Text>
-
+<Pressable onPress={() => console.log("Pressable funcionando")}>
+  <Text>Probar Pressable</Text>
+</Pressable>
       <Text style={styles.email}>{user?.email}</Text>
-
+      <TouchableOpacity style={styles.button} onPress={iraPrueba}>
+        <Text style={styles.buttonText}>Prsdadn</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => console.log("Botón de prueba")}>
+        <Text style={styles.buttonText}>Probar botón</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}onPress={() => navigation.navigate("Test")}>
+      <Text style={styles.buttonText}>Ir a TestScreen</Text>  
+      </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={lavarauto}>
         <Text style={styles.buttonText}>Solicitar Lavado</Text>
       </TouchableOpacity>
@@ -53,6 +68,7 @@ export default function Inicio() {
       <TouchableOpacity style={styles.button} onPress={lavador}>
         <Text style={styles.buttonText}>Ser Lavador</Text>
       </TouchableOpacity>
+
     </View>
   );
 }

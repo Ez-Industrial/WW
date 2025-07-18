@@ -1,6 +1,6 @@
 // App.js
 import React from "react";
-import AppNavigator from "./src/navigation";
+import AppNavigator from "./src/navigation/index";
 import { AuthProvider } from "./src/context/AuthContext";
 
 export default function App() {
