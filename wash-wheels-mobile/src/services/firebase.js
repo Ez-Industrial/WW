@@ -3,7 +3,7 @@ import {  getApps,initializeApp } from 'firebase/app';
 import { initializeAuth, getReactNativePersistence } from "firebase/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { GoogleAuthProvider } from 'firebase/auth';
-import { getFirestore, doc, getDocs, collection, query, where, onSnapshot } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, collection, query, where, onSnapshot } from 'firebase/firestore';
 import { getStorage }      from "firebase/storage";
 import Constants from "expo-constants"
 
@@ -30,12 +30,11 @@ const firebaseConfig = {
 };
 
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-let auth;
-try { auth = getAuth(app); } 
-catch (e) { auth = initializeAuth(app, { persistence: getReactNativePersistence(AsyncStorage)});}
+const auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(AsyncStorage)});
 const provider = new GoogleAuthProvider();
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-export { auth, provider, db, storage,collection, onSnapshot, doc, getDocs, query, where }
+export { auth, provider, db, storage,collection, onSnapshot, doc, getDoc, query, where }
 

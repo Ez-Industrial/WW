@@ -12,7 +12,7 @@ export default function InicioScreen() {
   console.log("ROL ACTUAL:", rol);
   const iraPrueba =() => navigation.navigate ("Prueba") ;
     const navegarComoCliente = () => navigation.navigate("Home");
-  const navegarComoLavador = () => navigation.navigate("HomeLav");
+  const navegarComoLavador = () => navigation.navigate("Home Lav");
   const Login = () => navigation.navigate("")
   const pedirLogin = () => { 
   Alert.alert("Debes Iniciar Sesión o Registrarte");
