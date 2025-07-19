@@ -12,9 +12,9 @@ export const fonts = {
 export default StyleSheet.create({
   container: { flex: 1, justifyContent: "center", padding: 20, backgroundColor: "#fff", alignItems: "center" },
   title: { fontSize: 32, textAlign: "center", marginBottom: 24, color: "#274bb1ff" },
-  input: { height: 30, borderColor: "#ccc", borderWidth: 1, borderRadius: 3, paddingHorizontal: 20, 
-            color:"#274bb1ff" , marginBottom: 16 },
-  button: { backgroundColor: "#274bb1ff", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 4,marginBottom: 9 },
+  input: { height: 50, maxHeight:50, minHeight: 50,borderColor: "#ccc", borderWidth: 1, borderRadius: 6, lineHeight: 50,
+     paddingHorizontal: 14, paddingVertical: 0, marginBottom: 16, fontSize:16, color: "#333", backgroundColor: "#fff"  },
+  button: { marginTop:10, backgroundColor: "#274bb1ff", paddingVertical: 12, paddingHorizontal: 24, borderRadius: 4,marginBottom: 9 },
   buttonText: { color: "#fff", textAlign: "center", fontSize: 16 },
   link: { color: "#274bb1ff", textAlign: "center", marginTop: 8},
   welcome: { fontSize: 28, marginBottom: 8 },

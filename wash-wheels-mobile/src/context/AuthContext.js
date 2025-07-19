@@ -18,7 +18,6 @@ export function AuthProvider({ children }) {
         setLoading(false);
         return;
       }
-
       try {
         const ref = doc(db, "usuarios", fbUser.uid);
         const snap = await getDoc(ref);

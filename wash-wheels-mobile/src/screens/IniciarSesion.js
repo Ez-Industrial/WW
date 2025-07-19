@@ -38,15 +38,12 @@ export default function IniciarSesion () {
   return (
    <View style={styles.container}>
     <Text style={styles.title}>Wash Wheels</Text>
-
-    <TextInput style={styles.input}
-      placeholder="Correo electrónico" keyboardType="email-address" autoCapitalize="none" value={email} onChangeText={setEmail} />
-    <TextInput style={styles.input}
-      placeholder="Contraseña" secureTextEntry value={password} onChangeText={setPassword} />
-     
+    <TextInput style={styles.input} placeholder="Correo electrónico" keyboardType="email-address" autoCapitalize="none" 
+    placeholderTextColor="#b0b6abff" value={email} onChangeText={setEmail} /> 
+    <TextInput style={styles.input} placeholder="Contraseña" placeholderTextColor="#b0b6abff" secureTextEntry 
+    value={password} onChangeText={setPassword} multiline={false} numberOfLines={1}  />
     <TouchableOpacity style={styles.button} onPress={handleAuth}>
-      <Text style={styles.buttonText}>
-       {isSignup ? "Registrarse" : "Iniciar Sesión"} </Text>
+      <Text style={styles.buttonText}>{isSignup ? "Registrarse" : "Iniciar Sesión"} </Text>
     </TouchableOpacity>
 
     <TouchableOpacity onPress={() => setIsSignup(!isSignup)}>
