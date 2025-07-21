@@ -11,9 +11,9 @@ export const fonts = {
 
 export default StyleSheet.create({
   container: { flex: 1, justifyContent: "center", padding: 20, backgroundColor: "#fff", alignItems: "center" },
-  title: { fontSize: 32, textAlign: "center", marginBottom: 24, color: "#274bb1ff" },
-  input: { height: 50, maxHeight:50, minHeight: 50,borderColor: "#ccc", borderWidth: 1, borderRadius: 6, lineHeight: 50,
-     paddingHorizontal: 14, paddingVertical: 0, marginBottom: 16, fontSize:16, color: "#333", backgroundColor: "#fff"  },
+  title: { fontSize: 38, textAlign: "center", marginBottom: 24, color: "#274bb1ff", fontWeight: "500" },
+  input: { width: "58%", height:35, borderColor: "#ced0d6ff", borderWidth: 1, borderRadius: 4, textAlignVertical: "center", 
+    textAlign: "lefts", paddingHorizontal: 11, paddingVertical: 8, marginBottom: 12, color:"#333", backgroundColor: "#fff"},
   button: { marginTop:10, backgroundColor: "#274bb1ff", paddingVertical: 12, paddingHorizontal: 24, borderRadius: 4,marginBottom: 9 },
   buttonText: { color: "#fff", textAlign: "center", fontSize: 16 },
   link: { color: "#274bb1ff", textAlign: "center", marginTop: 8},
@@ -23,4 +23,9 @@ export default StyleSheet.create({
   linkText: { fontSize: 16, color: "#007AFF", textDecorationLine: "underline", },
   muted: { fontSize: 14, color: "#999",},
   textBase: { fontSize: 16, color: "#333", lineHeight: 24, fontFamily: "System", marginBottom: 8,},
-});
+  crow: { flexDirection: "row", alignItems: "center", marginBottom: 12, },
+  passwordContainer: { flexDirection: 'row', alignItems: 'center', width: '58%', height: 35, borderWidth: 1, borderColor: '#ccc',
+    borderRadius: 4, paddingHorizontal: 8, marginBottom: 15,  },
+  passwordInput: { flex: 1, color: '#333', textAlign: 'left', textAlignVertical: 'center', },
+  iconButton: { padding: 8, },
+ });

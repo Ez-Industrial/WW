@@ -13,10 +13,9 @@ export default function InicioScreen() {
   const iraPrueba =() => navigation.navigate ("Prueba") ;
     const navegarComoCliente = () => navigation.navigate("Home");
   const navegarComoLavador = () => navigation.navigate("Home Lav");
-  const Login = () => navigation.navigate("")
   const pedirLogin = () => { 
   Alert.alert("Debes Iniciar Sesión o Registrarte");
-  navigation.navigate("Login");
+  navigation.navigate("Registrar");
 };
   const lavarauto = () => { 
     console.log("Botón presionado");

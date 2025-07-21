@@ -4,6 +4,7 @@ import { registerUserWithProfile } from "../services/firebaseService";
 import styles from "../styles/global";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import Input from '../components/Input';
 
 export default function Registrarse() {
   const [email, setEmail] = useState("");
@@ -28,52 +29,23 @@ export default function Registrarse() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Regístrate</Text>
+      <Text style={styles.title}>Registrar</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        value={username}
-        onChangeText={setUsername}
-        autoCapitalize="none"
-        placeholderTextColor="#b0b6abff"
-      />
-
-      <TextInput
-        style={styles.input}
-        placeholder="Nombre a mostrar"
-        value={displayName}
-        onChangeText={setDisplayName}
-        placeholderTextColor="#b0b6abff"
-      />
-         <TextInput
-        style={styles.input}
-        placeholder="Correo electrónico"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-        placeholderTextColor="#b0b6abff"
-      />
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <TextInput
-          style={[styles.input, { flex: 1 }]}
-          placeholder="Contraseña"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry={!showPassword}
-          placeholderTextColor="#b0b6abff"
-        />
-        <TouchableOpacity onPress={() => setShowPassword((s) => !s)} style={{ padding: 8 }}>
-          <Ionicons name={showPassword ? "eye-off" : "eye"} size={24} />
+      <TextInput style={styles.input} placeholder="Username" value={username} onChangeText={setUsername} autoCapitalize="none" placeholderTextColor="#b0b6abff"/>
+      <TextInput style={styles.input} placeholder="Nombre a mostrar" value={displayName} onChangeText={setDisplayName} placeholderTextColor="#b0b6abff"/>
+      <TextInput style={styles.input} placeholder="Correo electrónico" value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none"placeholderTextColor="#b0b6abff" />
+    <View style={styles.passwordContainer}>
+      <TextInput style={styles.passwordInput} placeholder="Contraseña" value={password} onChangeText={setPassword} secureTextEntry={!showPassword} placeholderTextColor="#b0b6abff"/>
+        <TouchableOpacity onPress={() => setShowPassword((s) => !s)} style= {styles.iconButton}>
+          <Ionicons name={showPassword ? "eye-off" : "eye"} size={20} />
         </TouchableOpacity>
-      </View>
+    </View>
 
       <TouchableOpacity style={styles.button} onPress={handleSignup}>
         <Text style={styles.buttonText}>Registrarse</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.goBack()}>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
         <Text style={styles.link}>¿Ya tienes cuenta? Inicia sesión</Text>
       </TouchableOpacity>
     </View>

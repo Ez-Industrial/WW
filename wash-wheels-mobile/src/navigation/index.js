@@ -11,6 +11,7 @@ import IniciarSesion from "../screens/IniciarSesion";
 import TestScreen from "../screens/TestScreen";
 import PerfilScreen from "../screens/Perfil";
 import PerfilButton from "../components/PerfilButton";
+import Registrarse from "../screens/Registrar";
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
@@ -26,6 +27,7 @@ export default function AppNavigator() {
         <Stack.Screen name="Login" component={IniciarSesion}/>
         <Stack.Screen name="Test" component={TestScreen}/>
         <Stack.Screen name="Perfil" component={PerfilScreen} />
+        <Stack.Screen name="Registrar" component={Registrarse}/>
       </Stack.Navigator>
     </NavigationContainer>     
 ); }
