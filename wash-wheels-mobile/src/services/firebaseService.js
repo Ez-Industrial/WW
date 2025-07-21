@@ -1,18 +1,18 @@
 //firebaseService.js
 import { auth } from "./firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendEmailVerification } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, sendEmailVerification,} from "firebase/auth";
 import { Alert } from "../core/native";
 
-export const actionCodeSettings = { 
-  url: "https://wash-wheels.web.app/",
-  handleCodeInApp: true };
-export const registerUser = async (email, password) => {
+export async function registerUserWithProfile({ email, password, username, displayName }) { 
   try {
     if (!email.includes("@")) {
     throw new Error("Correo inválido");}
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
     console.log("Usuario registrado", user.uid);
-    await sendEmailVerification(user, actionCodeSettings);
+     await updateProfile(user, { displayName });
+     await sendEmailVerification(user);
+     await setDoc(doc(firestore, "users", user.uid), { username, displayName, email, createdAt: new Date(), });
+
     console.log("Email de verificación enviado a:", email);
     Alert.alert("¡Mail de verificación enviado! Revisa tu bandeja.");
     return user;}
@@ -26,7 +26,7 @@ export const loginUser = async (email, password) => {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
     console.log("Inicio de sesión exitoso:", user.uid);
     if (!user.emailVerified) {
-     await sendEmailVerification(user, actionCodeSettings);
+     await sendEmailVerification(user);
      Alert.alert( "Correo no verificado", "Te hemos reenviado el correo de verificación. Por favor verifica tu cuenta antes de continuar.");
 }
 
