@@ -37,7 +37,7 @@ export default function IniciarSesion () {
 
   return (
    <View style={styles.container}>
-    <Text style={styles.title}>Wash Wheels</Text>
+    <Text style={styles.title}>Wash Wheeeels</Text>
     <TextInput style={styles.input} placeholder="Correo electrónico" keyboardType="email-address" autoCapitalize="none" 
     placeholderTextColor="#b0b6abff" value={email} onChangeText={setEmail} /> 
     <TextInput style={styles.input} placeholder="Contraseña" placeholderTextColor="#b0b6abff" secureTextEntry 
