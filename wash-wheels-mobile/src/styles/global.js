@@ -2,15 +2,12 @@
 import { StyleSheet } from "../core/native"
 
 export const colors = { primary: "#0868cfff", danger: "#FF3B30", gray: "#ccc", background: "#fff", text: "#333" };
-
 export const spacing = { xs: 4, sm: 8, md: 16, lg: 24, xl: 32 };
-
 export const fonts = {
   title: { fontSize: 32, fontWeight: "bold"},
   body: { fontSize: 16 } };
-
 export default StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", padding: 20, backgroundColor: "#fff", alignItems: "center" },
+  container: { flex: 1, justifyContent: "center", padding: 20, backgroundColor: "#fff", alignItems: "center", textAlign: "center"},
   title: { fontSize: 38, textAlign: "center", marginBottom: 24, color: "#274bb1ff", fontWeight: "500" },
   input: { width: "58%", height:35, borderColor: "#ced0d6ff", borderWidth: 1, borderRadius: 4, textAlignVertical: "center", 
     textAlign: "lefts", paddingHorizontal: 11, paddingVertical: 8, marginBottom: 12, color:"#333", backgroundColor: "#fff"},
@@ -28,4 +25,12 @@ export default StyleSheet.create({
     borderRadius: 4, paddingHorizontal: 8, marginBottom: 15,  },
   passwordInput: { flex: 1, color: '#333', textAlign: 'left', textAlignVertical: 'center', },
   iconButton: { padding: 8, },
- });
+  avatar: { width: 100, height: 100, borderRadius: 50, marginBottom: 16,},
+  field: { marginBottom: 12 },
+  label: { fontWeight: "bold", fontSize: 14, color: "#555",},
+  value: { fontSize: 16, color: "#011241ff", },
+  image: { width: '100%', height: 200, borderRadius: 8, marginBottom: 12, },
+  paragraph: { fontSize: 16, lineHeight: 22, marginBottom: 12, width: '88%'},
+  box: { padding: 16, backgroundColor: '#f2f2f2', borderRadius: 6,  marginBottom: 12, },
+  containerScroll: {padding: 16 } 
+});

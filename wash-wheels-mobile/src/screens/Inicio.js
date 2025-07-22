@@ -1,14 +1,14 @@
 // src/screens/Inicio.js
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, TouchableOpacity, Alert,Pressable } from "../core/native";
 import { useNavigation } from "@react-navigation/native";
-import { useAuth } from "../context/AuthContext";
+import { AuthContext, useAuth } from "../context/AuthContext";
 import styles from "../styles/global";
 
 export default function InicioScreen() {
   const navigation = useNavigation();
-  const { user } = useAuth();
-  const rol = user?.rol;
+  const { user, userProfile } = useContext(AuthContext)
+  const rol = userProfile.role ?? "Sin Rol"
   console.log("ROL ACTUAL:", rol);
   const iraPrueba =() => navigation.navigate ("Prueba") ;
     const navegarComoCliente = () => navigation.navigate("Home");

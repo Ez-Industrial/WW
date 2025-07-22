@@ -7,8 +7,6 @@ import { getFirestore, doc, getDoc, collection, query, where, onSnapshot } from 
 import { getStorage }      from "firebase/storage";
 import Constants from "expo-constants"
 
-
-
 const{
   EXPO_FIREBASE_API_KEY,
   EXPO_FIREBASE_AUTH_DOMAIN,

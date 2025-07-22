@@ -4,7 +4,12 @@ import { registerUserWithProfile } from "../services/firebaseService";
 import styles from "../styles/global";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import Input from '../components/Input';
+import { collection, query, where, getDocs, db } from 'firebase/firestore';
+ async function isUsernameTaken(username) {
+  const q = query(collection(db, 'users'), where('username', '==', username));
+  const snap = await getDocs(q);
+  return !snap.empty;
+}
 
 export default function Registrarse() {
   const [email, setEmail] = useState("");
@@ -20,8 +25,10 @@ export default function Registrarse() {
     }
     try {
       await registerUserWithProfile({ email, password, username, displayName });
+      if (await isUsernameTaken(username)) {
+      throw new Error('El username ya está en uso');}
       Alert.alert("Registro exitoso", "Verifica tu correo y luego inicia sesión");
-      navigation.goBack();
+      navigation.replace('Login');
     } catch (error) {
       Alert.alert("Error", error.message);
     }

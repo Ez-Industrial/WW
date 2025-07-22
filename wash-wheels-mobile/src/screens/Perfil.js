@@ -1,16 +1,22 @@
-import React from "react";
+import React, {useContext} from "react";
 import { View, Text, Image, TouchableOpacity } from "../core/native";
-import { useAuth } from "../context/AuthContext";
 import styles from "../styles/global";
 import { cerrarSesion } from "../services/firebaseService";
 import { useNavigation } from "@react-navigation/native";
 import auth from "../services/firebase"
+import { AuthContext } from "../context/AuthContext"
+
 export default function PerfilScreen() {
-  const { user } = useAuth();
-    const navigation = useNavigation();
-const foto = user?.photoURL
-  ? { uri: user.photoURL }
-  : require("../assets/sin-foto.png");
+  const { user, userProfile, loading } = useContext(AuthContext);
+  const navigation = useNavigation();
+  if (loading) {
+    return <Text style={styles.value}>Cargando perfil…</Text>; }
+  const avatarSource = userProfile.photoURL
+    ? { uri: userProfile.photoURL }
+    : user.photoURL
+    ? { uri: user.photoURL }
+    : require("../assets/sin-foto.png");
+
   const handleSignOut = async () => {
     try {
       await cerrarSesion(auth);
@@ -23,14 +29,24 @@ const foto = user?.photoURL
     }};
 
   return (
-    <View style={styles.container}>
-      <Image source={foto}  style={{ width: 100, height: 100, borderRadius: 50, marginBottom: 16 }}/>
-      <Text style={styles.title}>{user?.name ?? "Nombre no disponible"}</Text>
-      <Text style={styles.email}>{user?.email}</Text>
-      <Text style={styles.muted}>Rol: {user?.rol ?? "Sin rol"}</Text>
-      <TouchableOpacity style={styles.button} onPress={handleSignOut}>
-        <Text style={styles.buttonText}>Cerrar sesión</Text>
-      </TouchableOpacity>
+  <View style={styles.container}>
+    <Image source={avatarSource}  style={styles.avatar}/>
+   <View style={styles.field}>
+    <Text style={styles.label}>Nombre a mostrar</Text>
+    <Text style={styles.value}>{userProfile.displayName }</Text>
+  
+    <Text style={styles.label}>Username</Text>
+    <Text style={styles.value}>{userProfile.username ?? " No username encontrado"}</Text>
+ 
+    <Text style={styles.label}>Correo</Text>
+    <Text style={styles.value}>{userProfile.email ?? "No email visto"}</Text>
+
+    <Text style={styles.label}>Rol</Text>
+    <Text style={styles.value}>{userProfile.role ?? "Sin Rol" }</Text>
+   </View>
+    <TouchableOpacity style={styles.button} onPress={handleSignOut}>
+      <Text style={styles.buttonText}>Cerrar sesión</Text>
+    </TouchableOpacity>
     </View>
   );
 }

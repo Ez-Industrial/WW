@@ -29,6 +29,9 @@ export default function Prueba (){
      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Test")}>
       <Text style={styles.buttonText}>Ir a TestScreen</Text>
      </TouchableOpacity>
+     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Scroll")}>
+      <Text style={styles.buttonText}>Ir a ScreenScroll</Text>
+     </TouchableOpacity>
     <Text style={styles.subtitle}>Subtitle</Text>
     <Text style={styles.muted}>Muted</Text>
     <Text style={styles.linkText}>link Text</Text>

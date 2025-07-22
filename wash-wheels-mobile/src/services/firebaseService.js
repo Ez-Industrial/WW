@@ -1,7 +1,8 @@
 //firebaseService.js
-import { auth } from "./firebase";
+import { auth, db } from "./firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, sendEmailVerification,} from "firebase/auth";
 import { Alert } from "../core/native";
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 
 export async function registerUserWithProfile({ email, password, username, displayName }) { 
   try {
@@ -11,8 +12,9 @@ export async function registerUserWithProfile({ email, password, username, displ
     console.log("Usuario registrado", user.uid);
      await updateProfile(user, { displayName });
      await sendEmailVerification(user);
-     await setDoc(doc(firestore, "users", user.uid), { username, displayName, email, createdAt: new Date(), });
-
+     await setDoc(doc(db, "users", user.uid), { 
+      username, displayName, email, role: 'Cliente', createdAt: serverTimestamp(), });
+ 
     console.log("Email de verificación enviado a:", email);
     Alert.alert("¡Mail de verificación enviado! Revisa tu bandeja.");
     return user;}
