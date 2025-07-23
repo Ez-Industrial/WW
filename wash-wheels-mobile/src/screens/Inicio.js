@@ -8,8 +8,8 @@ import styles from "../styles/global";
 export default function InicioScreen() {
   const navigation = useNavigation();
   const { user, userProfile,  } = useContext(AuthContext)
-  const rol = userProfile.role ?? "Sin Rol"
-  console.log("ROL ACTUAL:", rol);
+  const role = userProfile.role ?? "Sin Rol"
+  console.log("ROL ACTUAL:", role);
   const iraPrueba =() => navigation.navigate ("Prueba") ;
     const navegarComoCliente = () => navigation.navigate("Home");
   const navegarComoLavador = () => navigation.navigate("Home Lav");
@@ -25,7 +25,7 @@ if (!user) return pedirLogin(); navegarComoCliente();
   const lavador = () => {
     console.log("Botón presionado");
   if (!user) return pedirLogin();
-  switch (rol) {
+  switch (role) {
     case "cliente":
       Alert.alert("La opción 'Lavar auto' no está disponible para clientes.");
       break;

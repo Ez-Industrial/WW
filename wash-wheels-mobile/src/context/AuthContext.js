@@ -13,8 +13,8 @@ async function fetchUserProfile(uid) {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [userProfile, setUserProfile] = useState({}); // datos de Firestore
-  const [loading, setLoading] = useState(false);
+  const [userProfile, setUserProfile] = useState({});
+  const [loading, setLoading] = useState(true);
   const [pendingFlow, setPendingFlow] = useState(null);
 
   useEffect(() => {

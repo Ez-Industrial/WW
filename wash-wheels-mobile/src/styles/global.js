@@ -32,5 +32,10 @@ export default StyleSheet.create({
   image: { width: '100%', height: 200, borderRadius: 8, marginBottom: 12, },
   paragraph: { fontSize: 16, lineHeight: 22, marginBottom: 12, width: '88%'},
   box: { padding: 16, backgroundColor: '#f2f2f2', borderRadius: 6,  marginBottom: 12, },
-  containerScroll: {padding: 16 } 
+  containerScroll: {padding: 16 }, 
+  header:    { padding:8, backgroundColor:'#eee', fontWeight:'bold' },
+  item:      { padding:16 },
+  itemText:  { fontSize:16 },
+  separator: { height:1, backgroundColor:'#ddd', marginLeft:16 }
+
 });

@@ -7,6 +7,7 @@ import RoleChoice     from './RoleChoice';
 import AuthStack      from './AuthStack';
 import ClienteTabs       from './ClienteTabs';
 import LavadorTabs from './LavadorTaps';
+import PerfilScreen from '../screens/Perfil';
 
 const Root = createNativeStackNavigator();
 
@@ -19,8 +20,9 @@ export default function AppNavigator() {
     <Root.Navigator screenOptions={{ headerShown: false }}  initialRouteName="RoleChoice">
       <Root.Screen  name="RoleChoice" component={RoleChoice} />
       <Root.Screen  name="AuthStack" component={AuthStack}  />
-      <Root.Screen name="MainTabs" component={ClienteTabs} />
+      <Root.Screen name="ClienteTabs" component={ClienteTabs} />
       <Root.Screen name="LavadorTabs" component={LavadorTabs} />
+      <Root.Screen name='Perfil' component={PerfilScreen}/>
     </Root.Navigator>
   </NavigationContainer>
   );
