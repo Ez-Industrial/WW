@@ -7,7 +7,7 @@ import styles from "../styles/global";
 
 export default function InicioScreen() {
   const navigation = useNavigation();
-  const { user, userProfile } = useContext(AuthContext)
+  const { user, userProfile,  } = useContext(AuthContext)
   const rol = userProfile.role ?? "Sin Rol"
   console.log("ROL ACTUAL:", rol);
   const iraPrueba =() => navigation.navigate ("Prueba") ;

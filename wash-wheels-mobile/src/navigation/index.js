@@ -1,35 +1,27 @@
-//src/navigation/index.js
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native"; 
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import  InicioScreen from "../screens/Inicio";
-import Prueba from "../screens/prueba";
-import Sisisi from "../screens/sisisi";
-import Home from "../screens/Home";
-import Homelav from "../screens/HomeLav";
-import IniciarSesion from "../screens/IniciarSesion";
-import TestScreen from "../screens/TestScreen";
-import PerfilScreen from "../screens/Perfil";
-import PerfilButton from "../components/PerfilButton";
-import Registrarse from "../screens/Registrar";
-import ScreenScroll from "../screens/ScreenScroll";
-const Stack = createNativeStackNavigator();
+// src/navigation/index.js
+import React from 'react';
+import { NavigationContainer }          from '@react-navigation/native';
+import { createNativeStackNavigator }   from '@react-navigation/native-stack';
+import { useAuth }                      from '../context/AuthContext';
+import RoleChoice     from './RoleChoice';
+import AuthStack      from './AuthStack';
+import ClienteTabs       from './ClienteTabs';
+import LavadorTabs from './LavadorTaps';
+
+const Root = createNativeStackNavigator();
 
 export default function AppNavigator() {
- return(
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: true }}> 
-        <Stack.Screen name="Inicio" component={InicioScreen} options={{ headerShown: true,
-        title: "Wash Wheels", headerRight: () => <PerfilButton /> }}/>
-        <Stack.Screen name="Sisisi" component={Sisisi} />
-        <Stack.Screen name="Prueba" component={Prueba} />
-        <Stack.Screen name="Home" component={Home}/>
-        <Stack.Screen name="Home Lav" component={Homelav}/>
-        <Stack.Screen name="Login" component={IniciarSesion}/>
-        <Stack.Screen name="Test" component={TestScreen}/>
-        <Stack.Screen name="Perfil" component={PerfilScreen} />
-        <Stack.Screen name="Registrar" component={Registrarse}/>
-        <Stack.Screen name="Scroll" component={ScreenScroll}/>
-      </Stack.Navigator>
-    </NavigationContainer>     
-); }
+  const { loading, user } = useAuth();
+  if (loading) { return null;}
+
+  return (
+  <NavigationContainer>
+    <Root.Navigator screenOptions={{ headerShown: false }}  initialRouteName="RoleChoice">
+      <Root.Screen  name="RoleChoice" component={RoleChoice} />
+      <Root.Screen  name="AuthStack" component={AuthStack}  />
+      <Root.Screen name="MainTabs" component={ClienteTabs} />
+      <Root.Screen name="LavadorTabs" component={LavadorTabs} />
+    </Root.Navigator>
+  </NavigationContainer>
+  );
+}

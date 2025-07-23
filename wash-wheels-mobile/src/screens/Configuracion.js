@@ -1,15 +1,12 @@
-//Home.js
 import styles from "../styles/global";
 import { View, Text, } from "../core/native";
-function HomeCliente() {
+export default function Configuracion() {
 
   return (
    <View style={styles.container}>
      <Text style={styles.welcome}>Wash Wheels</Text>
-     <Text> Bienvenido a home </Text>
+     <Text> cONFIGURA </Text>
    </View>
     
   );
 }
-
-export default HomeCliente;

@@ -1,7 +1,7 @@
 //sisisi.js
 import styles from "../styles/global";
 import { View, Text, } from "../core/native";
-export default function Sisisi() {
+export default function Actividades() {
 
   return (
    <View style={styles.container}>
