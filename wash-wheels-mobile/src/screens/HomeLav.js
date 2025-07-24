@@ -5,6 +5,7 @@ export default function Homelav() {
 
   return (
    <View style={styles.container}>
+    
      <Text style={styles.welcome}>Wash Wheels</Text>
      <Text> Bienvenido a home de lavadores </Text>
    </View>

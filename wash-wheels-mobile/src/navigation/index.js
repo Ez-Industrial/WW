@@ -8,7 +8,12 @@ import AuthStack      from './AuthStack';
 import ClienteTabs       from './ClienteTabs';
 import LavadorTabs from './LavadorTaps';
 import PerfilScreen from '../screens/Perfil';
-
+import Regalos from '../screens/Regalos';
+import Noticias from '../screens/Noticias';
+import FAQ from '../screens/FAQ';
+import Encuesta from '../screens/Encuesta';
+import TerminosyCondiciones from '../screens/TerminosyCondiciones';
+import Privacidad from '../screens/Privacidad';
 const Root = createNativeStackNavigator();
 
 export default function AppNavigator() {
@@ -23,6 +28,12 @@ export default function AppNavigator() {
       <Root.Screen name="ClienteTabs" component={ClienteTabs} />
       <Root.Screen name="LavadorTabs" component={LavadorTabs} />
       <Root.Screen name='Perfil' component={PerfilScreen}/>
+      <Root.Screen name="Regalos" component={Regalos} />
+      <Root.Screen name="Noticias" component={Noticias}/>
+      <Root.Screen name='FAQ' component={FAQ}/>
+      <Root.Screen name='Encuesta' component={Encuesta}/>
+      <Root.Screen name='Terminos y Condiciones' component={TerminosyCondiciones}/>
+      <Root.Screen name='Privacidad' component={Privacidad}/>
     </Root.Navigator>
   </NavigationContainer>
   );

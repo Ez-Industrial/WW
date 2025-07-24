@@ -6,7 +6,7 @@ export default function Actividades() {
   return (
    <View style={styles.container}>
      <Text style={styles.welcome}>Wash Wheels</Text>
-     <Text> sisisi </Text>
+     <Text> actividades </Text>
    </View>
     
   );

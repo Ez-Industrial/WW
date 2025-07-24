@@ -1,6 +1,6 @@
 // src/navigation/RoleChoice.js
 import React, { useEffect } from 'react';
-import { View, Button, Alert } from 'react-native';
+import { View, Alert,TouchableOpacity, Text, Button  } from "react-native";
 import { useAuth } from '../context/AuthContext';
 import styles from "../styles/global";
 
@@ -36,9 +36,16 @@ export default function RoleChoice({ navigation }) {
   }, [user, pendingFlow]);
 
   return (
-    <View style={styles.container}>
-      <Button style={styles.button} title="Solicitar Lavado" onPress={() => tryFlow('cliente')} />
-      <Button title="Ser Lavador" onPress={() => tryFlow('lavador')} />
-    </View>
+<View style={styles.container}>
+<Text style={styles.welcome}>Wash Wheels</Text>
+<TouchableOpacity style={styles.button} onPress={() => tryFlow('cliente')}>
+    <Text style={styles.buttonText}>Solicitar Lavado</Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity style={styles.button} onPress={() => tryFlow('lavador')}>
+    <Text style={styles.buttonText}>Ser Lavador</Text>
+ </TouchableOpacity>
+</View>
+
   );
 }

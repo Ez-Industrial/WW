@@ -5,6 +5,7 @@ import { cerrarSesion } from "../services/firebaseService";
 import { useNavigation } from "@react-navigation/native";
 import auth from "../services/firebase"
 import { AuthContext } from "../context/AuthContext"
+import BackButton from "../components/BackButton";
 
 export default function PerfilScreen() {
   const { user, userProfile, loading } = useContext(AuthContext);
@@ -30,6 +31,7 @@ export default function PerfilScreen() {
 
   return (
   <View style={styles.container}>
+    <BackButton/>
     <Image source={avatarSource}  style={styles.avatar}/>
    <View style={styles.field}>
     <Text style={styles.label}>Nombre a mostrar</Text>

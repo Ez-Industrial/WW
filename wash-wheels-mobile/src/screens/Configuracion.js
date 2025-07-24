@@ -1,4 +1,5 @@
 //src/screens/Configuracion.js
+import React from "react";
 import styles from "../styles/global";
 import { View, Text, SectionList, TouchableOpacity } from "../core/native";
 import { useNavigation } from '@react-navigation/native';
@@ -35,8 +36,8 @@ export default function Configuracion() {
   );
   return (
     <View style={styles.container}>
-     <Text style={styles.welcome}>Wash Wheels</Text>
-     <Text style={styles.textBase}> cONFIGURA </Text>
+     <Text style={styles.title}>Wash Wheels</Text> 
+    <Text style={styles.welcome}>Configuración</Text>
      <TouchableOpacity
   style={styles.button}
   onPress={() => navigation.navigate('RoleChoice')}

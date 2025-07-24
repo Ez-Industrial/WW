@@ -1,3 +1,3 @@
 // src/core/native.js
-export { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, ScrollView, SectionList,
+export { View, Text, TextInput, TouchableOpacity, TouchableHighlight, Alert, StyleSheet, ScrollView, SectionList, Button,
     Pressable, Image, } from "react-native";

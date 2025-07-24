@@ -1,13 +1,26 @@
-import React from "react";
-import { TouchableOpacity, Text } from "../core/native";
-import { useNavigation } from "@react-navigation/native";
+// src/components/BackButton.js
+import React from 'react';
+import { TouchableOpacity, }from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
+import styles from"../styles/global";
 
-export default function BackButton({ label = "Volver", style = {} }) {
+export default function BackButton({
+  color = '#000',
+  size  = 24,
+  style = {}
+}) {
   const navigation = useNavigation();
-// <BackButton label="← Regresar" style={{ marginBottom: 12 }} />
+
   return (
-    <TouchableOpacity onPress={() => navigation.goBack()} style={style}>
-      <Text style={{ color: "#007AFF", fontSize: 16 }}>{label}</Text>
+    <TouchableOpacity
+      style={[styles.backButton, style]}
+      onPress={() => navigation.goBack()}
+      activeOpacity={0.7}
+    >
+      <Ionicons name="arrow-back" size={size} color={color} />
     </TouchableOpacity>
   );
 }
+
+

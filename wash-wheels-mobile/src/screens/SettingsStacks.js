@@ -4,24 +4,24 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import ConfiguracionScreen from '../screens/Configuracion';
 import PerfilScreen        from '../screens/Perfil';
-import RegalosScreen       from '../screens/Regalos';
-import NoticiasScreen      from '../screens/Noticias';
-import FAQScreen           from '../screens/FAQ';
-import EncuestaScreen      from '../screens/Encuesta';
-import LegalesScreen       from '../screens/Legales';
+import Regalos      from '../screens/Regalos';
+import Noticias      from '../screens/Noticias';
+import FAQ           from '../screens/FAQ';
+import Encuesta     from '../screens/Encuesta';
+import Legales       from '../screens/Legales';
 
 const Stack = createNativeStackNavigator();
 
 export default function SettingsStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: true }}>
-      <Stack.Screen name="Configuración" component={ConfiguracionScreen}/>
+      <Stack.Screen name="Configuracion" component={ConfiguracionScreen}/>
       <Stack.Screen name="Perfil"        component={PerfilScreen}       />
-      <Stack.Screen name="Regalos"       component={RegalosScreen}      />
-      <Stack.Screen name="Noticias"      component={NoticiasScreen}     />
-      <Stack.Screen name="FAQ"           component={FAQScreen}          />
-      <Stack.Screen name="Encuesta"      component={EncuestaScreen}     />
-      <Stack.Screen name="Legales"       component={LegalesScreen}      />
+      <Stack.Screen name="Regalos"       component={Regalos}      />
+      <Stack.Screen name="Noticias"      component={Noticias}     />
+      <Stack.Screen name="FAQ"           component={FAQ}          />
+      <Stack.Screen name="Encuesta"      component={Encuesta}     />
+      <Stack.Screen name="Legales"       component={Legales}      />
     </Stack.Navigator>
   );
 }

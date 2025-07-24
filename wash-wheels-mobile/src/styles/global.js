@@ -11,7 +11,7 @@ export default StyleSheet.create({
   title: { fontSize: 38, textAlign: "center", marginBottom: 24, color: "#274bb1ff", fontWeight: "500" },
   input: { width: "58%", height:35, borderColor: "#ced0d6ff", borderWidth: 1, borderRadius: 4, textAlignVertical: "center", 
     textAlign: "lefts", paddingHorizontal: 11, paddingVertical: 8, marginBottom: 12, color:"#333", backgroundColor: "#fff"},
-  button: { marginTop:10, backgroundColor: "#274bb1ff", paddingVertical: 12, paddingHorizontal: 24, borderRadius: 4,marginBottom: 9 },
+  button: { marginTop:10, marginVertical: 8, backgroundColor: "#274bb1ff", paddingVertical: 12, paddingHorizontal: 24, borderRadius: 4,marginBottom: 9 },
   buttonText: { color: "#fff", textAlign: "center", fontSize: 16 },
   link: { color: "#274bb1ff", textAlign: "center", marginTop: 8},
   welcome: { fontSize: 28, marginBottom: 8 },
@@ -36,6 +36,7 @@ export default StyleSheet.create({
   header:    { padding:8, backgroundColor:'#eee', fontWeight:'bold' },
   item:      { padding:16 },
   itemText:  { fontSize:16 },
-  separator: { height:1, backgroundColor:'#ddd', marginLeft:16 }
+  separator: { height:1, backgroundColor:'#ddd', marginLeft:16 },
+  backButton: { marginTop: 0, paddingVertical: 8, paddingHorizontal: 15, borderRadius: 6, alignSelf: "flex-start", },
 
 });
