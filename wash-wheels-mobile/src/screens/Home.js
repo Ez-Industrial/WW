@@ -1,13 +1,18 @@
 //Home.js
 import styles from "../styles/global";
-import { View, Text, } from "../core/native";
-function HomeCliente() {
+import {Text,ScrollView, TouchableOpacity } from "../core/native";
+import { useNavigation } from "@react-navigation/native";
 
+function HomeCliente() {
+const navigation = useNavigation();
   return (
-   <View style={styles.container}>
+   <ScrollView style={styles.containerScroll}>
      <Text style={styles.welcome}>Wash Wheels</Text>
      <Text> Bienvenido a home </Text>
-   </View>
+     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Prueba')}>
+         <Text style={styles.buttonText}>prueba</Text>
+       </TouchableOpacity>
+   </ScrollView>
     
   );
 }

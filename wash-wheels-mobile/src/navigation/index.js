@@ -14,6 +14,7 @@ import FAQ from '../screens/FAQ';
 import Encuesta from '../screens/Encuesta';
 import TerminosyCondiciones from '../screens/TerminosyCondiciones';
 import Privacidad from '../screens/Privacidad';
+import PruebaScreenScroll from '../screens/ScreenScroll';
 const Root = createNativeStackNavigator();
 
 export default function AppNavigator() {
@@ -34,6 +35,7 @@ export default function AppNavigator() {
       <Root.Screen name='Encuesta' component={Encuesta}/>
       <Root.Screen name='Terminos y Condiciones' component={TerminosyCondiciones}/>
       <Root.Screen name='Privacidad' component={Privacidad}/>
+      <Root.Screen name='Prueba' component={PruebaScreenScroll}/>
     </Root.Navigator>
   </NavigationContainer>
   );

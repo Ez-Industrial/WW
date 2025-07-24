@@ -3,7 +3,6 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import HomeCliente from '../screens/Home';
-import Perfil from '../screens/Perfil';
 import Actividades from '../screens/Actividades';
 import SettingsStack from '../screens/SettingsStacks';
 
@@ -18,8 +17,7 @@ export default function ClienteTabs() {
           const icons = {
             Inicio: 'home',
             Actividades: 'list',
-            Perfil: 'person',
-            Configuración: 'settings',
+            Menu: 'ellipsis-horizontal',
           };
           return <Ionicons name={icons[route.name]} size={size} color={color} />;
         },
@@ -31,8 +29,7 @@ export default function ClienteTabs() {
     >
       <Tab.Screen name="Inicio" component={HomeCliente} />
       <Tab.Screen name="Actividades" component={Actividades} />
-      <Tab.Screen name="Perfil" component={Perfil} />
-      <Tab.Screen name="Configuración" component={SettingsStack} />
+      <Tab.Screen name="Menu" component={SettingsStack} />
     </Tab.Navigator>
   );
 }

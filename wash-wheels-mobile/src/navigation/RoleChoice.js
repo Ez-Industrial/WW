@@ -8,32 +8,23 @@ export default function RoleChoice({ navigation }) {
   const { user, userProfile, pendingFlow, setPendingFlow } = useAuth();
 
   const handleAccess = (flow) => {
-    if (flow === 'cliente') {
-      navigation.reset({ index: 0, routes: [{ name: 'ClienteTabs' }] });
-    } else { 
-      const role = userProfile.role;
-      if (role === 'lavador' || role === 'admin') {
-        navigation.reset({ index: 0, routes: [{ name: 'LavadorTabs' }] });
-      } else {
-        Alert.alert(
-          'Acceso denegado',
-          'Solo usuarios con rol lavador o admin pueden entrar aquí.'
-        ); }}
-    setPendingFlow(null);
-  };
+    if (flow === 'cliente') { navigation.reset({ index: 0, routes: [{ name: 'ClienteTabs' }] });} 
+    else
+       {  const role = userProfile.role;
+      if (role === 'lavador' || role === 'admin') { navigation.reset({ index: 0, routes: [{ name: 'LavadorTabs' }] });} 
+      else 
+        {Alert.alert( 'Acceso denegado', 'Solo usuarios con rol lavador o admin pueden entrar aquí.' ); }}
+    setPendingFlow(null);};
 
   const tryFlow = (flow) => {
     setPendingFlow(flow);
-
-    if (!user) { navigation.navigate('AuthStack', { screen: 'Register' });
-    } 
+    if (!user) { navigation.navigate('AuthStack', { screen: 'Register' });} 
     else { handleAccess(flow);}};
 
    useEffect(() => {
     if (user && pendingFlow) {
-      handleAccess(pendingFlow);
-    }
-  }, [user, pendingFlow]);
+      handleAccess(pendingFlow);}}, 
+    [user, pendingFlow]);
 
   return (
 <View style={styles.container}>
@@ -44,7 +35,9 @@ export default function RoleChoice({ navigation }) {
 
   <TouchableOpacity style={styles.button} onPress={() => tryFlow('lavador')}>
     <Text style={styles.buttonText}>Ser Lavador</Text>
+    
  </TouchableOpacity>
+
 </View>
 
   );

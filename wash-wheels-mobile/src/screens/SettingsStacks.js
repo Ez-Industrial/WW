@@ -2,7 +2,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import ConfiguracionScreen from '../screens/Configuracion';
+import ConfiguracionScreen from './Menu';
 import PerfilScreen        from '../screens/Perfil';
 import Regalos      from '../screens/Regalos';
 import Noticias      from '../screens/Noticias';

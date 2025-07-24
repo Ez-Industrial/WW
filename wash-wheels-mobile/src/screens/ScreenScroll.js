@@ -1,10 +1,12 @@
 import React from 'react';
 import { ScrollView, View, Text, Image } from '../core/native';
 import styles from "../styles/global";
-export default function ScreenScroll() {
+import BackButton from '../components/BackButton';
+export default function PruebaScreenScroll() {
 
   return (
     <ScrollView contentContainerStyle={styles.containerScroll}>
+      <BackButton/>
       <Text style={styles.title}>Bienvenida a mi app</Text>
 
       <Text style={styles.paragraph}>

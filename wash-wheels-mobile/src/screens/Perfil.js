@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import { View, Text, Image, TouchableOpacity } from "../core/native";
+import { View, Text, Image, TouchableOpacity, SafeAreaView,ScrollView } from "../core/native";
 import styles from "../styles/global";
 import { cerrarSesion } from "../services/firebaseService";
 import { useNavigation } from "@react-navigation/native";
@@ -30,8 +30,12 @@ export default function PerfilScreen() {
     }};
 
   return (
-  <View style={styles.container}>
-    <BackButton/>
+  <SafeAreaView style={styles.container}> 
+   <View style={styles.header}>
+    <BackButton style={styles.backButton}/>
+    <Text style={styles.title}>Mi Perfil</Text>
+   </View>
+  <ScrollView contentContainerStyle={styles.content}>
     <Image source={avatarSource}  style={styles.avatar}/>
    <View style={styles.field}>
     <Text style={styles.label}>Nombre a mostrar</Text>
@@ -45,10 +49,12 @@ export default function PerfilScreen() {
 
     <Text style={styles.label}>Rol</Text>
     <Text style={styles.value}>{userProfile.role ?? "Sin Rol" }</Text>
-   </View>
+    </View>
+   </ScrollView>
     <TouchableOpacity style={styles.button} onPress={handleSignOut}>
       <Text style={styles.buttonText}>Cerrar sesión</Text>
     </TouchableOpacity>
-    </View>
+
+    </SafeAreaView>
   );
 }

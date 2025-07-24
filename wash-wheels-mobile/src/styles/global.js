@@ -33,10 +33,12 @@ export default StyleSheet.create({
   paragraph: { fontSize: 16, lineHeight: 22, marginBottom: 12, width: '88%'},
   box: { padding: 16, backgroundColor: '#f2f2f2', borderRadius: 6,  marginBottom: 12, },
   containerScroll: {padding: 16 }, 
-  header:    { padding:8, backgroundColor:'#eee', fontWeight:'bold' },
+  cuadra:    { padding:8, backgroundColor:'#eee', fontWeight:'bold', },
   item:      { padding:16 },
   itemText:  { fontSize:16 },
   separator: { height:1, backgroundColor:'#ddd', marginLeft:16 },
-  backButton: { marginTop: 0, paddingVertical: 8, paddingHorizontal: 15, borderRadius: 6, alignSelf: "flex-start", },
-
-});
+  backButton: { marginTop: 13, paddingVertical: 8, paddingHorizontal: 15, borderRadius: 6, alignSelf: "flex-start", },
+   header: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 12, borderBottomWidth: 1, borderBottomColor: '#eee' },
+  // Si no usas SafeAreaView, puedes hacer paddingTop manual: // paddingTop: Platform.OS === 'android' ? 20 : 0,
+  });
+      

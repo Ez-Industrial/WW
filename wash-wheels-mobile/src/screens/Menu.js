@@ -19,11 +19,13 @@ const SECTIONS = [
 
   { title: 'Legal',
     data: [ { key: 'Términos y Condiciones', screen: 'Legales' },
-      { key: 'Privacidad', screen: 'Legales' }, ] }
+      { key: 'Privacidad', screen: 'Legales' }, ] },
+  { title: 'Configuración',
+    data: [ { key: 'Configuraciones', screen: 'Legales' }, ] }
 ];
 
 
-export default function Configuracion() {
+export default function Menu() {
   const navigation = useNavigation();
 
   const renderItem = ({ item }) => (
@@ -38,23 +40,15 @@ export default function Configuracion() {
     <View style={styles.container}>
      <Text style={styles.title}>Wash Wheels</Text> 
     <Text style={styles.welcome}>Configuración</Text>
-     <TouchableOpacity
-  style={styles.button}
-  onPress={() => navigation.navigate('RoleChoice')}
->
-  <Text style={styles.buttonText}>Ir al Inicio</Text>
-</TouchableOpacity>
-      <SectionList
-        sections={SECTIONS}
-        keyExtractor={(item) => item.key}
-        renderSectionHeader={({ section: { title } }) => (
-          <Text style={styles.header}>{title}</Text>
-        )}
+   
+    <SectionList sections={SECTIONS} keyExtractor={(item) => item.key} renderSectionHeader={({ section: { title } }) => (
+          <Text style={styles.cuadra}>{title}</Text>)}
         renderItem={renderItem}
-        ItemSeparatorComponent={() => <View style={styles.separator} />}
-      
-      />
-
+        ItemSeparatorComponent={() => 
+    <View style={styles.separator} />} />
+    <TouchableOpacity style={styles.cuadra} onPress={() => navigation.navigate('RoleChoice')}>
+     <Text style={styles.textBase}>Ir al Inicio</Text>
+    </TouchableOpacity>
     </View>
   );
 }
