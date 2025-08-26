@@ -16,7 +16,7 @@
     "@react-navigation/bottom-tabs": "^7.4.2",
     "@react-navigation/native": "^7.1.14",
     "@react-navigation/native-stack": "^7.3.21",
-    "dotenv": "^17.2.0",
+    "dotenv": "^17.2.1",
     "expo": "^53.0.22",
     "expo-location": "^18.1.6",
     "expo-status-bar": "~2.2.3",
@@ -28,7 +28,10 @@
     "react-native-screens": "^4.11.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.2"
+    "@babel/core": "^7.25.2",
+    "@expo/cli": "^0.24.21",
+    "expo-cli": "^6.3.12",
+    "metro": "^0.82.5"
   },
   "private": true
 }
