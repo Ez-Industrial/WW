@@ -29,12 +29,8 @@
     },
 
     "plugins": [
-      [
-        "react-native-maps",
-        {
-          "provider": "google"
-        }
-      ]
+      [ "react-native-maps",
+        {  "provider": "google" } ]
     ] ,
 
 

@@ -6,9 +6,11 @@ import AppContent from "./src/AppContent"
 
 export default function App() {
 
-  return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
-  );
+  return <Text>¿Carga Hola Mundo?</Text>;
+
+//return (
+//  <AuthProvider>
+//    <AppContent />
+//  </AuthProvider>
+//);
 }
