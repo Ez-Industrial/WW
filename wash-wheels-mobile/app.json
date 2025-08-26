@@ -13,9 +13,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
+      "bundleIdentifier": "com.washwheels.mobile",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.washwheels.mobile",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -25,6 +27,17 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+
+    "plugins": [
+      [
+        "react-native-maps",
+        {
+          "provider": "google"
+        }
+      ]
+    ] ,
+
+
     "extra": {
       "EXPO_FIREBASE_API_KEY": "${EXPO_FIREBASE_API_KEY} ", 
       "EXPO_FIREBASE_AUTH_DOMAIN": "${EXPO_FIREBASE_AUTH_DOMAIN}",
