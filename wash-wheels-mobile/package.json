@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "main": "Index.js",
   "scripts": {
+    "postinstall": "patch-package",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -21,8 +22,6 @@
     "expo-location": "^18.1.6",
     "expo-status-bar": "~2.2.3",
     "firebase": "^11.10.0",
-    "react": "19.0.0",
-    "react-native": "0.79.5",
     "react-native-maps": "1.20.1",
     "react-native-safe-area-context": "^5.4.0",
     "react-native-screens": "^4.11.1"
@@ -31,7 +30,9 @@
     "@babel/core": "^7.25.2",
     "@expo/cli": "^0.24.21",
     "expo-cli": "^6.3.12",
-    "metro": "^0.82.5"
+    "metro": "^0.82.5",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0"
   },
   "private": true
 }

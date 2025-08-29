@@ -6,7 +6,7 @@ import { collection, addDoc, serverTimestamp,Timestamp } from 'firebase/firestor
 import styles from "../styles/global";
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import MapView, { Marker } from 'react-native-maps';
+import {MapView, Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 
 export default function SolicitudForm() {
