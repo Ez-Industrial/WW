@@ -1,5 +1,5 @@
 // app.config.js
-import "dotenv/config";
+require('dotenv').config();
 
 export default {
   expo: {

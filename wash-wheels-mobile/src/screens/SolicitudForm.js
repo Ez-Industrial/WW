@@ -1,13 +1,15 @@
 // src/pages/SolicitudForm.jsx
 import React, { useEffect, useRef, useState } from 'react';
-import {View, Text, TextInput, Button, ScrollView, ActivityIndicator, Platform} from "../core/native";
+import {TouchableOpacity, Text, TextInput, Button, ScrollView, ActivityIndicator, Platform} from "../core/native";
+import { useColorScheme } from 'react-native';
 import { db, auth } from '../services/firebase';
 import { collection, addDoc, serverTimestamp,Timestamp } from 'firebase/firestore';
 import styles from "../styles/global";
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import {MapView, Marker } from 'react-native-maps';
+import MapView,{ Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
+import { useNavigation } from '@react-navigation/native';
 
 export default function SolicitudForm() {
   const [marca, setMarca]           = useState('');
@@ -69,10 +71,23 @@ export default function SolicitudForm() {
       : modelo === 'Otro'
       ? customCarModel
       : `${marca} ${modelo}`;
-
+  const navigation = useNavigation();
   const finalColor = color === 'Otro' ? customColor : color;
-
-  const onRegionChange = (r) => setRegion(r);
+  const colorScheme = useColorScheme();
+  const pickerTextColor = colorScheme === 'dark' ? '#fff' : '#000';
+  const goToCurrentLocation = async () => {
+  let { status } = await Location.requestForegroundPermissionsAsync();
+  if (status !== 'granted') {
+    alert('Permiso de ubicación denegado');
+    return;
+  }
+  let loc = await Location.getCurrentPositionAsync({ accuracy: 5 });
+  setRegion(r => ({
+    ...r,
+    latitude: loc.coords.latitude,
+    longitude: loc.coords.longitude
+  }));
+};
 
   const onMarkerDragEnd = e => {
     const { latitude, longitude } = e.nativeEvent.coordinate;
@@ -96,6 +111,10 @@ export default function SolicitudForm() {
         status:       'pending'
       });
       alert('¡Solicitud enviada!');
+     navigation.navigate('LavadorTabs', { screen: 'Inicio' });
+
+
+
       // resetea campos
       setNotes('');
       setMarca(''); setModelo(''); setCustom(''); setColor(''); setCustomCol('');
@@ -112,13 +131,13 @@ export default function SolicitudForm() {
     return <ActivityIndicator style={{ flex:1 }} size="large" />; }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={styles.formContent}>
+      
       <Text style={styles.heading}>Solicita un lavado de auto</Text>
 
       {/* Marca y Modelo */}
       <Text style={styles.label}>Marca</Text>
-      <Picker
-        selectedValue={marca}
+      <Picker style={{ color: pickerTextColor }} dropdownIconColor={pickerTextColor} selectedValue={marca}
         onValueChange={v => {
           setMarca(v); setModelo(''); setCustom(''); }}>
         <Picker.Item label="--Selecciona marca--" value="" />
@@ -130,8 +149,7 @@ export default function SolicitudForm() {
       {marca && marca !== 'Otro' && (
         <>
           <Text style={styles.label}>Modelo</Text>
-          <Picker
-            selectedValue={modelo}
+          <Picker selectedValue={modelo}
             onValueChange={v => {
               setModelo(v);
               if (v !== 'Otro') setCustom('');
@@ -148,38 +166,25 @@ export default function SolicitudForm() {
       {(marca === 'Otro' || modelo === 'Otro') && (
         <>
           <Text style={styles.label}>Especifica marca/modelo</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Marca y modelo"
-            value={customCarModel}
-            onChangeText={setCustom}
-          />
+          <TextInput style={styles.input} placeholder="Marca y modelo" value={customCarModel} onChangeText={setCustom} />
         </>
       )}
 
       {/* Color */}
       <Text style={styles.label}>Color</Text>
-      <Picker selectedValue={color} onValueChange={setColor}>
+      <Picker selectedValue={color} onValueChange={setColor} style={{ color: '#f01b1bff' }}  >
         <Picker.Item label="--Selecciona color--" value="" />
         {colores.map(c => (
           <Picker.Item key={c} label={c} value={c} />
         ))}
       </Picker>
       {color === 'Otro' && (
-        <TextInput
-          style={styles.input}
-          placeholder="Color personalizado"
-          value={customColor}
-          onChangeText={setCustomCol}
-        />
+        <TextInput style={styles.input} placeholder="Color personalizado" value={customColor} onChangeText={setCustomCol} />
       )}
 
       {/* Tipo de servicio */}
       <Text style={styles.label}>Tipo de servicio</Text>
-      <Picker
-        selectedValue={serviceType}
-        onValueChange={setService}
-      >
+      <Picker selectedValue={serviceType}  onValueChange={setService} style={{ color: pickerTextColor }} dropdownIconColor={pickerTextColor}  >
         <Picker.Item label="Básico"  value="basico" />
         <Picker.Item label="Premium" value="premium" />
         <Picker.Item label="Deluxe"  value="deluxe" />
@@ -187,15 +192,9 @@ export default function SolicitudForm() {
 
       {/* Fecha y hora */}
       <Text style={styles.label}>Fecha preferida</Text>
-      <Button
-        title={date.toLocaleString()}
-        onPress={() => setShowPicker(true)}
-      />
+      <Button title={date.toLocaleString()} onPress={() => setShowPicker(true)} />
       {showPicker && (
-        <DateTimePicker
-          value={date}
-          mode="datetime"
-          display={Platform.OS === 'ios' ? ' spinner' : 'default'}
+        <DateTimePicker value={date} mode="datetime" display={Platform.OS === 'ios' ? 'spinner' : 'default'}
           onChange={(_, d) => {
             setShowPicker(false);
             if (d) setDate(d);
@@ -217,15 +216,18 @@ export default function SolicitudForm() {
       <Text style={styles.label}>Selecciona ubicación</Text>
       <MapView
         style={styles.map}
-        region={region}
-        onRegionChangeComplete={onRegionChange}
-      >
+        initialRegion={region}>
+
         <Marker
           coordinate={region}
           draggable
           onDragEnd={onMarkerDragEnd}
         />
       </MapView>
+      <TouchableOpacity style={{ backgroundColor: '#797e83ff', padding: 10, borderRadius: 8, alignSelf: 'center', marginBottom: 8, heigh: 50 }}
+      onPress={goToCurrentLocation}>
+      <Text style={{ color: '#fff', fontWeight: 'bold' }}>📍 Mi ubicación</Text>
+      </TouchableOpacity>
 
       {/* Botón enviar */}
       {submitting

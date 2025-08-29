@@ -22,7 +22,7 @@ export default StyleSheet.create({
   subtitle: { fontSize: 20, fontWeight: "600", color: "#666", marginBottom: 8, },
   linkText: { fontSize: 16, color: "#007AFF", textDecorationLine: "underline", },
   muted: { fontSize: 14, color: "#999",},
-  textBase: { fontSize: 16, color: "#333", lineHeight: 24, fontFamily: "System", marginBottom: 8,},
+  textBase: { fontSize: 16, color: "#fd0707ff", lineHeight: 24, fontFamily: "System", marginBottom: 8,},
   crow: { flexDirection: "row", alignItems: "center", marginBottom: 12, },
   passwordContainer: { flexDirection: 'row', alignItems: 'center', width: '58%', height: 35, borderWidth: 1, 
     borderColor: '#ccc', borderRadius: 4, paddingHorizontal: 8, marginBottom: 15,  },
@@ -44,8 +44,11 @@ export default StyleSheet.create({
    header: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 12, borderBottomWidth: 1, 
     borderBottomColor: '#eee' },
   // Si no usas SafeAreaView, puedes hacer paddingTop manual: // paddingTop: Platform.OS === 'android' ? 20 : 0,
-  map: { width: '100%', height: 200, marginVertical: 12, borderRadius: 6 },
+  map: { width: '80%', height: 300, marginVertical: 12, borderRadius: 6 ,alignSelf: 'center', },
   heading: { fontSize: 22, fontWeight: '600', marginBottom: 12 },
+  formContent: { padding: 16, flexGrow: 1, alignItems: 'stretch',backgroundColor: colorScheme === 'dark' ? '#333' : '#fff',
+  borderRadius: 8
+},
 
 });
       
