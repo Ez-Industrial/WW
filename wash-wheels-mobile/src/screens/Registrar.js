@@ -4,8 +4,9 @@ import { registerUserWithProfile } from "../services/firebaseService";
 import styles from "../styles/global";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { collection, query, where, getDocs, db } from 'firebase/firestore';
- async function isUsernameTaken(username) {
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from "../services/firebase";
+async function isUsernameTaken(username) {
   const q = query(collection(db, 'users'), where('username', '==', username));
   const snap = await getDocs(q);
   return !snap.empty;
@@ -24,11 +25,13 @@ export default function Registrarse() {
       return Alert.alert("Completa todos los campos");
     }
     try {
-      await registerUserWithProfile({ email, password, username, displayName });
       if (await isUsernameTaken(username)) {
-      throw new Error('El username ya está en uso');}
+        return Alert.alert("Nombre de usuario en uso", "Elige otro nombre de usuario, este ya está registrado."); }
+      await registerUserWithProfile({ email, password, username, displayName });
+
       Alert.alert("Registro exitoso", "Verifica tu correo y luego inicia sesión");
       navigation.replace('Login');
+
     } catch (error) {
       Alert.alert("Error", error.message);
     }

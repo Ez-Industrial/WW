@@ -10,7 +10,7 @@ export default function RoleChoice({ navigation }) {
   const handleAccess = (flow) => {
     if (flow === 'cliente') { navigation.reset({ index: 0, routes: [{ name: 'ClienteTabs' }] });} 
     else
-       {  const role = userProfile.role;
+       {  const role = userProfile?.role;
       if (role === 'lavador' || role === 'admin') { navigation.reset({ index: 0, routes: [{ name: 'LavadorTabs' }] });} 
       else 
         {Alert.alert( 'Acceso denegado', 'Solo usuarios con rol lavador o admin pueden entrar aquí.' ); }}

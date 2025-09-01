@@ -9,7 +9,6 @@ const navigation = useNavigation();
   return (
   <SafeAreaView style={styles.container}> 
      <View style={styles.header}>
-      <BackButton style={styles.backButton}/> 
       <Text style={styles.title}>Wash Wheels</Text>
      </View>
    <ScrollView style={styles.containerScroll}>

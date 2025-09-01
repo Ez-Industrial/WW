@@ -16,11 +16,21 @@ import TerminosyCondiciones from '../screens/TerminosyCondiciones';
 import Privacidad from '../screens/Privacidad';
 import PruebaScreenScroll from '../screens/ScreenScroll';
 import SolicitudForm from '../screens/SolicitudForm';
+import Legales from '../screens/Legales';
 const Root = createNativeStackNavigator();
 
 export default function AppNavigator() {
   const { loading, user } = useAuth();
   if (loading) { return null;}
+  if (!user) {
+  return (
+    <NavigationContainer>
+      <Root.Navigator screenOptions={{ headerShown: false }}>
+        <Root.Screen name="AuthStack" component={AuthStack} />
+      </Root.Navigator>
+    </NavigationContainer>
+  );
+}
 
   return (
   <NavigationContainer>
@@ -38,6 +48,7 @@ export default function AppNavigator() {
       <Root.Screen name='Privacidad' component={Privacidad}/>
       <Root.Screen name='Prueba' component={PruebaScreenScroll}/>
       <Root.Screen name='Solicitud' component={SolicitudForm}/>
+      <Root.Screen name= 'Legales'component={Legales}/>
     </Root.Navigator>
   </NavigationContainer>
   );

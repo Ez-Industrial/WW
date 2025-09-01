@@ -23,7 +23,9 @@ export default function PerfilScreen() {
       await cerrarSesion(auth);
       navigation.reset({
         index: 0,
-        routes: [{ name: "Login" }]
+        routes: [{
+      name: 'AuthStack',
+      state: { index: 0, routes: [{ name: 'Login' }] }}]
       });
     } catch (error) {
       console.error("Error al cerrar sesión:", error);

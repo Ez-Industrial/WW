@@ -1,6 +1,6 @@
 // src/pages/SolicitudForm.jsx
 import React, { useEffect, useRef, useState } from 'react';
-import {TouchableOpacity, Text, TextInput, Button, ScrollView, ActivityIndicator, Platform} from "../core/native";
+import {TouchableOpacity,View , Text, TextInput, Button, ScrollView, ActivityIndicator, Platform} from "../core/native";
 import { useColorScheme } from 'react-native';
 import { db, auth } from '../services/firebase';
 import { collection, addDoc, serverTimestamp,Timestamp } from 'firebase/firestore';
@@ -10,6 +10,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import MapView,{ Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { useNavigation } from '@react-navigation/native';
+import BackButton from '../components/BackButton';
 
 export default function SolicitudForm() {
   const [marca, setMarca]           = useState('');
@@ -111,13 +112,10 @@ export default function SolicitudForm() {
         status:       'pending'
       });
       alert('¡Solicitud enviada!');
-     navigation.navigate('LavadorTabs', { screen: 'Inicio' });
-
-
+     navigation.navigate('ClienteTabs', { screen: 'Inicio' });
 
       // resetea campos
-      setNotes('');
-      setMarca(''); setModelo(''); setCustom(''); setColor(''); setCustomCol('');
+      setNotes(''); setMarca(''); setModelo(''); setCustom(''); setColor(''); setCustomCol('');
       setService('basico'); setDate(new Date());
     } catch (err) {
       console.error(err);
@@ -131,10 +129,13 @@ export default function SolicitudForm() {
     return <ActivityIndicator style={{ flex:1 }} size="large" />; }
 
   return (
-    <ScrollView contentContainerStyle={styles.formContent}>
-      
-      <Text style={styles.heading}>Solicita un lavado de auto</Text>
+    <ScrollView contentContainerStyle={{ ...styles.formContent, backgroundColor: colorScheme === 'dark' ? '#333' : '#fff' }}>
+      <View style={styles.header}>
+           <BackButton style={styles.backButton}/> 
+           <Text style={styles.heading}>Solicita un lavado de auto</Text>
 
+      </View>     
+      
       {/* Marca y Modelo */}
       <Text style={styles.label}>Marca</Text>
       <Picker style={{ color: pickerTextColor }} dropdownIconColor={pickerTextColor} selectedValue={marca}

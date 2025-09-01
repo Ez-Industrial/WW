@@ -7,7 +7,8 @@ import Registrarse from '../screens/Registrar';
 const Stack = createNativeStackNavigator();
 
 export default function AuthStack({route}) {
- return (
+ const role = route?.params?.role ?? null;
+  return ( 
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="Login" component={LoginScreen} initialParams={{ role }}/>
     <Stack.Screen name="Register" component={Registrarse} initialParams={{ role }}/>

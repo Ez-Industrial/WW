@@ -14,7 +14,7 @@ const Stack = createNativeStackNavigator();
 
 export default function SettingsStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: true }}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Configuracion" component={ConfiguracionScreen}/>
       <Stack.Screen name="Perfil"        component={PerfilScreen}       />
       <Stack.Screen name="Regalos"       component={Regalos}      />

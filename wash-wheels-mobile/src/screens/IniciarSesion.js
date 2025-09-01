@@ -21,6 +21,7 @@ export default function LoginScreen() {
       let msg = error.message;
       if (error.code === "auth/user-not-found") msg = "Usuario no encontrado";
       else if (error.code === "auth/wrong-password") msg = "Contraseña incorrecta";
+      else if (error.code === "auth/email-already-in-use") msg = "Utilizar otro correo, ya esta en uso";
       Alert.alert("Error", msg); } };
 
   return (
@@ -38,7 +39,7 @@ export default function LoginScreen() {
         <Text style={styles.buttonText}>Iniciar Sesón</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate("Registrar")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Register")}>
         <Text style={styles.link}>¿No tienes cuenta? Regístrate</Text>
       </TouchableOpacity>
     </View>

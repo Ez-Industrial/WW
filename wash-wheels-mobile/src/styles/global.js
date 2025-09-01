@@ -46,9 +46,7 @@ export default StyleSheet.create({
   // Si no usas SafeAreaView, puedes hacer paddingTop manual: // paddingTop: Platform.OS === 'android' ? 20 : 0,
   map: { width: '80%', height: 300, marginVertical: 12, borderRadius: 6 ,alignSelf: 'center', },
   heading: { fontSize: 22, fontWeight: '600', marginBottom: 12 },
-  formContent: { padding: 16, flexGrow: 1, alignItems: 'stretch',backgroundColor: colorScheme === 'dark' ? '#333' : '#fff',
-  borderRadius: 8
-},
+  formContent: { padding: 16, flexGrow: 1, alignItems: 'stretch', borderRadius: 8},
 
 });
       

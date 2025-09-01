@@ -11,7 +11,9 @@ export async function registerUserWithProfile({ email, password, username, displ
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
     console.log("Usuario registrado", user.uid);
      await updateProfile(user, { displayName });
-     await sendEmailVerification(user);
+     const actionCodeSettings = { url: 'https://wash-wheels.firebaseapp.com', handleCodeInApp: false };
+
+     await sendEmailVerification(user, actionCodeSettings);
      await setDoc(doc(db, "users", user.uid), { 
       username, displayName, email, role: 'Cliente', createdAt: serverTimestamp(), });
  
@@ -28,7 +30,11 @@ export const loginUser = async (email, password) => {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
     console.log("Inicio de sesión exitoso:", user.uid);
     if (!user.emailVerified) {
-     await sendEmailVerification(user);
+      const actionCodeSettings = {
+        url: 'https://tuproyecto.web.app',
+        handleCodeInApp: false
+      };
+     await sendEmailVerification(user,actionCodeSettings);
      Alert.alert( "Correo no verificado", "Te hemos reenviado el correo de verificación. Por favor verifica tu cuenta antes de continuar.");
 }
 

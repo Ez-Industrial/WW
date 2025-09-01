@@ -1,14 +1,20 @@
 import React from 'react';
-import { ScrollView, View, Text, Image } from '../core/native';
+import { ScrollView, View, Text, Image, useTheme } from '../core/native';
 import styles from "../styles/global";
 import BackButton from '../components/BackButton';
 export default function PruebaScreenScroll() {
+const theme = useTheme();
+
 
   return (
-    <ScrollView contentContainerStyle={styles.containerScroll}>
+    <ScrollView contentContainerStyle={{...styles.containerScroll,backgroundColor: theme.background}}>
       <BackButton/>
       <Text style={styles.title}>Bienvenida a mi app</Text>
-
+      <Text style={{...styles.paragraph, color: theme.text }}>
+        Aquí puedes agregar todo tipo de contenido: párrafos, listas, imágenes, videos, formularios…
+        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
+        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
+      </Text>
       <Text style={styles.paragraph}>
         Aquí puedes agregar todo tipo de contenido: párrafos, listas, imágenes, videos, formularios…
         sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
