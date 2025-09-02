@@ -25,8 +25,8 @@ export default function Registrarse() {
       return Alert.alert("Completa todos los campos");
     }
     try {
-      if (await isUsernameTaken(username)) {
-        return Alert.alert("Nombre de usuario en uso", "Elige otro nombre de usuario, este ya está registrado."); }
+      const taken = await isUsernameTaken(username);
+      if (taken) { return Alert.alert( "Nombre de usuario en uso", "Elige otro nombre de usuario, este ya está registrado." ); }
       await registerUserWithProfile({ email, password, username, displayName });
 
       Alert.alert("Registro exitoso", "Verifica tu correo y luego inicia sesión");

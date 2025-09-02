@@ -26,7 +26,7 @@ export default function AppNavigator() {
   return (
     <NavigationContainer>
       <Root.Navigator screenOptions={{ headerShown: false }}>
-        <Root.Screen name="AuthStack" component={AuthStack} />
+        <Root.Screen name="RoleChoice" component={AuthStack} />
       </Root.Navigator>
     </NavigationContainer>
   );

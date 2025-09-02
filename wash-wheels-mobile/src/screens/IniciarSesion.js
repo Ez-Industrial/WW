@@ -16,7 +16,7 @@ export default function LoginScreen() {
       return Alert.alert("Por favor ingresa correo y contraseña");}
     try {
       await loginUser(email, password);
-      navigation.reset({ index: 0, routes: [{ name: "Inicio" }] });
+      navigation.reset({ index: 0, routes: [{ name: "RoleChoice" }] });
     } catch (error) {
       let msg = error.message;
       if (error.code === "auth/user-not-found") msg = "Usuario no encontrado";
