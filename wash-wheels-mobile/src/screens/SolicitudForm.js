@@ -102,7 +102,7 @@ export default function SolicitudForm() {
       await addDoc(collection(db, 'solicitudes'), {
         clientId:     userId,
         clientName:   userName,
-        coords:       { lat: region.latitude, lng: region.longitude },
+        coords:       { latitude: region.latitude, longitude: region.longitude },
         timestamp:    serverTimestamp(),
         carModel:     finalCarModel,
         color:        finalColor,
