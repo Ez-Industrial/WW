@@ -1,88 +1,25 @@
-import React from 'react';
-import { ScrollView, View, Text, Image, useTheme } from '../core/native';
-import styles from "../styles/global";
-import BackButton from '../components/BackButton';
-export default function PruebaScreenScroll() {
-const theme = useTheme();
+import * as ImagePicker from 'expo-image-picker';
+import { Button, View } from 'react-native';
 
+export default function PruebaScreenScroll() {
+  const pickImage = async () => {
+    console.log('📌 pickImage ejecutado');
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    console.log('📌 Permiso:', status);
+    if (status !== 'granted') return;
+
+    console.log('📌 Abriendo galería...');
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: [ImagePicker.MediaType.Images],
+      allowsEditing: true,
+      quality: 0.7,
+    });
+    console.log('📌 Resultado picker:', result);
+  };
 
   return (
-    <ScrollView contentContainerStyle={{...styles.containerScroll,backgroundColor: theme.background}}>
-      <BackButton/>
-      <Text style={styles.title}>Bienvenida a mi app</Text>
-      <Text style={{...styles.paragraph, color: theme.text }}>
-        Aquí puedes agregar todo tipo de contenido: párrafos, listas, imágenes, videos, formularios…
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-      </Text>
-      <Text style={styles.paragraph}>
-        Aquí puedes agregar todo tipo de contenido: párrafos, listas, imágenes, videos, formularios…
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-
-
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-
-
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-        sisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisii
-        sisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisiisisi
-      </Text>
-
-      <View style={styles.box}>
-        <Text>Este es un recuadro adicional que también participa en el scroll.</Text>
-      </View>
-      
-    </ScrollView>
+    <View style={{ marginTop: 50 }}>
+      <Button title="Test Picker" onPress={pickImage} />
+    </View>
   );
 }

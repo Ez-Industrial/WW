@@ -10,9 +10,16 @@ export default function DetalleSolicitud({ route }) {
       <Text style={styles.title}>Solicitud de {solicitud.clientName}</Text>
 
       {/* Espacio para imagen */}
-      <View style={styles.imagePlaceholder}>
-        <Text style={{ color: '#888' }}>Imagen del auto</Text>
-      </View>
+    {solicitud.photoURL ? (
+    <Image
+    source={{ uri: solicitud.photoURL }}
+    style={{ width: '100%', height: 200, borderRadius: 8 }} resizeMode="cover" />
+     ) : (
+  <View style={styles.imagePlaceholder}>
+    <Text style={{ color: '#888' }}>Imagen del auto</Text>
+  </View>
+)}
+
 
       <Text style={styles.label}>Modelo:</Text>
       <Text style={styles.value}>{solicitud.carModel}</Text>
