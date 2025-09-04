@@ -96,10 +96,14 @@ export default function SolicitudForm() {
         Alert.alert('Permiso requerido', 'Debes permitir acceso a tus fotos.');
         return;
       }
+      // Detectar si existe la nueva API
+    const mediaTypeValue = ImagePicker.MediaType
+      ? [ImagePicker.MediaType.Images] // ✅ nueva API
+      : ImagePicker.MediaTypeOptions.Images; // ✅ fallback
 
       console.log('📌 Abriendo galería...');
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        mediaTypes: mediaTypeValue,
         allowsEditing: true,
         quality: 0.7,
       });
@@ -153,7 +157,7 @@ export default function SolicitudForm() {
 
       console.log('📝 Guardando solicitud en Firestore...');
       await addDoc(collection(db, 'solicitudes'), {
-        clientId: userId,
+        clientId: auth.currentUser.uid,
         clientName: userName,
         coords: { latitude: region.latitude, longitude: region.longitude },
         timestamp: serverTimestamp(),
